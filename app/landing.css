@@ -1,0 +1,56 @@
+/* Estilos portados de MainV2 (.dk) y MobileV2 (.mb). */
+.dk a,.mb a{text-decoration:none;color:inherit}
+.mb button{font-family:var(--font-sans)}
+.dk .eb{font-size:12px;letter-spacing:1.2px;font-weight:500;color:#5E5E5A}
+.dk .btn{display:inline-flex;align-items:center;gap:12px;padding:15px 22px;border-radius:8px;font-size:16px;font-weight:500;line-height:20px;border:1px solid transparent;box-sizing:border-box;transition:background .2s,color .2s,transform .2s,border-color .2s;cursor:pointer;font-family:'IBM Plex Sans',sans-serif}
+.dk .btn:hover{transform:translateY(-1px)}
+.dk .btn-p{background:#FF5A1F;color:#0A0A0A}
+.dk .btn-p:hover{background:#E34710}
+.dk .btn-d{background:#0A0A0A;color:#fff}
+.dk .btn-d:hover{background:#222220}
+.dk .btn-o{border-color:#CFCFCA;color:#0A0A0A;background:#fff}
+.dk .btn-o:hover{border-color:#0A0A0A}
+.dk .btn-g{border-color:#3a3a37;color:#fff}
+.dk .btn-g:hover{background:#fff;color:#0A0A0A}
+.dk .nav{font-size:14px;color:#5E5E5A;padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.dk .nav:hover{color:#0A0A0A;border-color:#FF5A1F}
+.dk .lnk{display:inline-flex;gap:8px;font-weight:500;font-size:15px;transition:gap .2s}
+.dk .lnk:hover{gap:14px}
+.dk .blk{transition:transform .3s}
+.dk .blk:hover{transform:translateY(-4px)}
+.dk .fl{color:#9B9B96;font-size:14px;transition:color .2s}
+.dk .fl:hover{color:#fff}
+.dk .dot{background-image:radial-gradient(#CFCFCA 1.1px,transparent 1.3px);background-size:24px 24px}
+.dk .dashh{background-image:linear-gradient(90deg,#FF5A1F 50%,transparent 50%);background-size:12px 2px;background-repeat:repeat-x;animation:fh 1s linear infinite}
+.dk .dashv{background-image:linear-gradient(180deg,#FF5A1F 50%,transparent 50%);background-size:2px 12px;background-repeat:repeat-y;animation:fv 1s linear infinite}
+@keyframes fh{to{background-position:12px 0}}
+@keyframes fv{to{background-position:0 12px}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.dk .rv{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.dk .rv2{animation:rise .9s .15s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.dk .fy{animation:fl 5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.dk .pl{animation:pulse 2.4s ease-in-out infinite}
+.dk .inp{width:100%;box-sizing:border-box;height:52px;padding:0 16px;border:1px solid #DCDCD8;border-radius:8px;background:#FAFAF8;font:16px 'IBM Plex Sans',sans-serif;color:#0A0A0A}
+.dk .inp:focus{outline:none;border-color:#0A0A0A;background:#fff}
+@media (prefers-reduced-motion:reduce){.dk *{animation:none!important;transition:none!important}}
+.mb button{font-family:'IBM Plex Sans',sans-serif}
+.mb .eb{font-size:11px;letter-spacing:1.2px;font-weight:500;color:#5E5E5A}
+.mb .btn{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 20px;min-height:52px;border-radius:8px;font-size:16px;font-weight:500;border:1px solid transparent;box-sizing:border-box}
+.mb .btn-p{background:#FF5A1F;color:#0A0A0A}
+.mb .btn-d{background:#0A0A0A;color:#fff}
+.mb .btn-o{border-color:#CFCFCA;background:#fff}
+.mb .btn-g{border-color:#3a3a37;color:#fff}
+.mb .lnk{display:inline-flex;gap:8px;font-weight:500;font-size:15px;padding:8px 0}
+.mb .dot{background-image:radial-gradient(#CFCFCA 1.1px,transparent 1.3px);background-size:22px 22px}
+.mb .dashh{background-image:linear-gradient(90deg,#FF5A1F 50%,transparent 50%);background-size:12px 2px;background-repeat:repeat-x;animation:fh 1s linear infinite}
+@keyframes fh{to{background-position:12px 0}}
+.mb .dashv{background-image:linear-gradient(180deg,#FF5A1F 50%,transparent 50%);background-size:2px 12px;background-repeat:repeat-y;animation:fv 1s linear infinite}
+@keyframes fv{to{background-position:0 12px}}
+@keyframes rise-m{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.mb .rv{animation:rise-m .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.mb .pl{animation:pulse 2.4s ease-in-out infinite}
+.mb .inp{width:100%;box-sizing:border-box;height:52px;padding:0 16px;border:1px solid #DCDCD8;border-radius:8px;background:#FAFAF8;font:16px 'IBM Plex Sans',sans-serif;color:#0A0A0A}
+@media (prefers-reduced-motion:reduce){.mb *{animation:none!important;transition:none!important}}

@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Kodexa — Product Studio · Desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0A0A0A;background:#fff;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:2px solid #0A0A0A;outline-offset:3px}
+.eb{font-size:12px;letter-spacing:1.2px;font-weight:500;color:#5E5E5A}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 22px;border-radius:8px;font-size:16px;font-weight:500;line-height:20px;border:1px solid transparent;box-sizing:border-box;transition:background .2s,color .2s,transform .2s,border-color .2s;cursor:pointer;font-family:'IBM Plex Sans',sans-serif}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:#FF5A1F;color:#0A0A0A}.btn-p:hover{background:#E34710}
+.btn-d{background:#0A0A0A;color:#fff}.btn-d:hover{background:#222220}
+.btn-o{border-color:#CFCFCA;color:#0A0A0A;background:#fff}.btn-o:hover{border-color:#0A0A0A}
+.btn-g{border-color:#3a3a37;color:#fff}.btn-g:hover{background:#fff;color:#0A0A0A}
+.nav{font-size:14px;color:#5E5E5A;padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav:hover{color:#0A0A0A;border-color:#FF5A1F}
+.lnk{display:inline-flex;gap:8px;font-weight:500;font-size:15px;transition:gap .2s}
+.lnk:hover{gap:14px}
+.blk{transition:transform .3s}
+.blk:hover{transform:translateY(-4px)}
+.fl{color:#9B9B96;font-size:14px;transition:color .2s}.fl:hover{color:#fff}
+.dot{background-image:radial-gradient(#CFCFCA 1.1px,transparent 1.3px);background-size:24px 24px}
+.dashh{background-image:linear-gradient(90deg,#FF5A1F 50%,transparent 50%);background-size:12px 2px;background-repeat:repeat-x;animation:fh 1s linear infinite}
+.dashv{background-image:linear-gradient(180deg,#FF5A1F 50%,transparent 50%);background-size:2px 12px;background-repeat:repeat-y;animation:fv 1s linear infinite}
+@keyframes fh{to{background-position:12px 0}}@keyframes fv{to{background-position:0 12px}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.rv{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}.rv2{animation:rise .9s .15s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.fy{animation:fl 5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}.pl{animation:pulse 2.4s ease-in-out infinite}
+.inp{width:100%;box-sizing:border-box;height:52px;padding:0 16px;border:1px solid #DCDCD8;border-radius:8px;background:#FAFAF8;font:16px 'IBM Plex Sans',sans-serif;color:#0A0A0A}
+.inp:focus{outline:none;border-color:#0A0A0A;background:#fff}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.opt{position:relative;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:14px;text-align:left;padding:14px;min-height:88px;border:1px solid #E4E4DF;border-radius:14px;background:#FAFAF8;color:#0A0A0A;font:500 15px/19px 'IBM Plex Sans',sans-serif;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s,transform .2s}
+.opt:hover{border-color:#0A0A0A;transform:translateY(-1px)}
+.opt .ck{position:absolute;right:12px;top:12px;width:16px;height:16px;border-radius:50%;border:1.5px solid #CFCFCA;background:#fff;box-sizing:border-box;transition:all .2s}
+.opt.on{border-color:#0A0A0A;background:#fff;box-shadow:0 0 0 3px rgba(255,90,31,.22)}
+.opt.on .ck{background:#FF5A1F;border-color:#FF5A1F;box-shadow:inset 0 0 0 3px #fff}
+.fld{width:100%;box-sizing:border-box;height:54px;padding:0 16px;border:1px solid #DCDCD8;border-radius:12px;background:#FAFAF8;font:16px 'IBM Plex Sans',sans-serif;color:#0A0A0A;transition:border-color .2s,box-shadow .2s,background .2s}
+.fld:hover{border-color:#9B9B96}
+.fld:focus{outline:none;border-color:#0A0A0A;background:#fff;box-shadow:0 0 0 3px rgba(255,90,31,.22)}
+.fl2{font-size:12px;letter-spacing:1px;font-weight:500;color:#5E5E5A}
+.send{display:flex;justify-content:space-between;align-items:center;width:100%;box-sizing:border-box;height:58px;padding:0 24px;border:0;border-radius:12px;background:#0A0A0A;color:#fff;font:500 16px 'IBM Plex Sans',sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+.send:hover{background:#222220;transform:translateY(-1px)}.send span{color:#FF5A1F;font-size:18px}
+.wal{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;background:#FF5A1F;color:#0A0A0A;font-weight:500;border-radius:14px;transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 18px 36px -16px rgba(255,90,31,.7)}
+.wal:hover{background:#FF6F3C;transform:translateY(-2px)}
+.ul{border-bottom:1px solid #3a3a37;transition:border-color .2s,color .2s}.ul:hover{border-color:#FF5A1F;color:#FF5A1F}
+</style>
+</helmet>
+<div style="width:100%;background:#fff">
+
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:20;height:72px;box-sizing:border-box;padding:0 80px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E4DF">
+<a href="#top" style="display:flex;align-items:center;gap:10px" aria-label="Kodexa — inicio"><span style="position:relative;width:26px;height:18px;display:block"><i style="position:absolute;left:0;top:1px;width:16px;height:16px;background:#FF5A1F;display:block"></i><i style="position:absolute;left:8px;top:1px;width:16px;height:16px;border:1.5px solid #0A0A0A;border-radius:50%;display:block;box-sizing:border-box"></i></span><span style="font-size:24px;font-weight:600;letter-spacing:-.8px">kodexa</span></a>
+<nav aria-label="Principal" style="display:flex;gap:36px"><a class="nav" href="#servicios">Servicios</a><a class="nav" href="#productos">Productos</a><a class="nav" href="#proyectos">Proyectos</a><a class="nav" href="#contacto">Contacto</a></nav>
+<a class="btn btn-p" style="padding:11px 18px;font-size:14px" data-event="whatsapp_click" data-origin="header" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20hablar%20con%20Kodexa">Hablemos <span>→</span></a>
+</header>
+
+<main id="top">
+
+<!-- 01 HERO -->
+<section style="padding:72px 80px 56px;display:flex;gap:64px;align-items:center">
+<div class="rv" style="width:560px;flex:none;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 12px;border:1px solid #DCDCD8;border-radius:999px"><span class="pl" style="width:8px;height:8px;border-radius:50%;background:#FF5A1F;display:block"></span><span style="font-size:13px;color:#5E5E5A">Estudio de producto digital · Argentina</span></div>
+<h1 style="margin:0;font-size:68px;line-height:70px;letter-spacing:-2.8px;font-weight:600">Tecnología que impulsa tu <span style="color:#FF5A1F">negocio.</span></h1>
+<p style="margin:0;max-width:480px;font-size:19px;line-height:29px;color:#5E5E5A">Diseñamos experiencias web, desarrollamos software y creamos productos propios que ayudan a las empresas a trabajar mejor y crecer.</p>
+<div style="display:flex;gap:12px;align-items:center">
+<a class="btn btn-p" data-event="whatsapp_click" data-origin="hero" href="https://wa.me/5491178148150?text=Hola%2C%20lleg%C3%A9%20a%20trav%C3%A9s%20de%20la%20web%20de%20Kodexa%20y%20quiero%20consultar%20por%20un%20proyecto">Hablemos por WhatsApp <span>→</span></a>
+<a class="btn btn-o" href="#servicios">Ver servicios</a>
+</div>
+<div style="display:flex;gap:28px;padding-top:12px;border-top:1px solid #E4E4DF;margin-top:8px"><div style="display:flex;align-items:center;gap:8px"><i style="width:10px;height:10px;background:#FF5A1F;display:block"></i><span style="font-size:14px;color:#5E5E5A">Nexo</span></div><div style="display:flex;align-items:center;gap:8px"><i style="width:10px;height:10px;border:1.5px solid #0A0A0A;border-radius:50%;display:block;box-sizing:border-box"></i><span style="font-size:14px;color:#5E5E5A">Nodo</span></div><span style="font-size:14px;color:#5E5E5A">Productos propios para gestionar y vender mejor</span></div>
+</div>
+
+<!-- Composición de producto -->
+<div class="rv2" role="img" aria-label="Composición de producto: agenda de Nexo, pipeline de Nodo y conversación de WhatsApp conectados" style="position:relative;flex:1;min-width:0;height:600px;max-width:656px">
+<div class="dot" style="position:absolute;inset:0;border-radius:24px"></div>
+<div style="position:absolute;right:0;top:0;width:280px;height:280px;background:#FF5A1F;border-bottom-left-radius:280px"></div>
+<div style="position:absolute;left:-10px;top:470px;width:170px;height:170px;border:1.5px solid #0A0A0A;border-radius:50%;box-sizing:border-box"></div>
+<i style="position:absolute;left:30px;top:20px;width:44px;height:44px;background:#0A0A0A;display:block"></i>
+
+<!-- Nexo -->
+<div class="fy" style="position:absolute;left:0;top:56px;width:450px;height:340px;background:#fff;border:1px solid #DCDCD8;border-radius:12px;overflow:hidden">
+<div style="height:36px;border-bottom:1px solid #E4E4DF;display:flex;align-items:center;gap:6px;padding:0 14px;background:#FAFAF8"><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><span style="margin-left:12px;font-size:12px;color:#5E5E5A">Nexo — Agenda</span></div>
+<div style="position:absolute;left:0;top:36px;bottom:0;width:96px;border-right:1px solid #E4E4DF;background:#FAFAF8;padding:14px 10px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:12px"><i style="width:9px;height:9px;background:#FF5A1F;display:block"></i><b style="font-size:13px;font-weight:600">nexo</b></div><div style="padding:7px 8px;background:#EDEDE8;border-radius:6px;font-size:12px">Agenda</div><div style="padding:7px 8px;font-size:12px;color:#5E5E5A">Clientes</div><div style="padding:7px 8px;font-size:12px;color:#5E5E5A">Servicios</div><div style="padding:7px 8px;font-size:12px;color:#5E5E5A">Chats</div></div>
+<div style="position:absolute;left:112px;top:46px;right:14px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;font-weight:500">Semana · 4–8 nov</span><span style="font-size:11px;padding:5px 9px;background:#0A0A0A;color:#fff;border-radius:6px">+ Turno</span></div>
+<div style="position:absolute;left:112px;top:80px;right:14px;bottom:0;background-image:linear-gradient(90deg,#EDEDE8 1px,transparent 1px),linear-gradient(#EDEDE8 1px,transparent 1px);background-size:64px 100%,100% 44px"></div>
+<div style="position:absolute;left:112px;top:84px;width:64px;font-size:10px;letter-spacing:1px;color:#9B9B96;padding-left:6px">LUN</div><div style="position:absolute;left:176px;top:84px;font-size:10px;letter-spacing:1px;color:#9B9B96;padding-left:6px">MAR</div><div style="position:absolute;left:240px;top:84px;font-size:10px;letter-spacing:1px;color:#9B9B96;padding-left:6px">MIÉ</div><div style="position:absolute;left:304px;top:84px;font-size:10px;letter-spacing:1px;color:#9B9B96;padding-left:6px">JUE</div>
+<div style="position:absolute;left:116px;top:112px;width:58px;height:50px;background:#EDEDE8;border-left:3px solid #9B9B96;border-radius:4px;padding:5px 6px;box-sizing:border-box;font-size:11px">Corte<br><span style="color:#5E5E5A">09:00</span></div>
+<div style="position:absolute;left:180px;top:150px;width:58px;height:62px;background:#EDEDE8;border-left:3px solid #9B9B96;border-radius:4px;padding:5px 6px;box-sizing:border-box;font-size:11px">Color<br><span style="color:#5E5E5A">11:00</span></div>
+<div style="position:absolute;left:296px;top:100px;width:144px;height:52px;background:#FF5A1F;border-radius:4px;padding:6px 8px;box-sizing:border-box;font-size:12px;font-weight:500">Consulta inicial<br><span style="font-weight:400">10:30 · confirmado</span></div>
+<div style="position:absolute;left:244px;top:200px;width:60px;height:50px;background:#EDEDE8;border-left:3px solid #9B9B96;border-radius:4px;padding:5px 6px;box-sizing:border-box;font-size:11px">Turno<br><span style="color:#5E5E5A">14:00</span></div>
+</div>
+
+<!-- Nodo -->
+<div class="fy" style="position:absolute;left:266px;top:250px;width:390px;height:300px;background:#0A0A0A;border:1px solid #222220;border-radius:12px;overflow:hidden;animation-delay:-2.5s">
+<div style="height:32px;border-bottom:1px solid #222220;display:flex;align-items:center;gap:6px;padding:0 14px"><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><span style="margin-left:12px;font-size:12px;color:#9B9B96">Nodo — Pipeline</span></div>
+<div style="display:flex;gap:10px;padding:14px 14px 0"><div style="flex:1;padding:8px 10px;border:1px solid #222220;border-radius:8px"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96">LEADS</div><div style="font-size:20px;color:#fff;font-weight:500">24</div></div><div style="flex:1;padding:8px 10px;border:1px solid #222220;border-radius:8px"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96">OPORT.</div><div style="font-size:20px;color:#fff;font-weight:500">8</div></div><div style="flex:1;padding:8px 10px;border:1px solid #FF5A1F;border-radius:8px"><div style="font-size:9px;letter-spacing:1px;color:#FF5A1F">TAREAS</div><div style="font-size:20px;color:#fff;font-weight:500">5</div></div></div>
+<div style="display:flex;gap:10px;padding:14px 14px 0">
+<div style="flex:1"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96;margin-bottom:6px">NUEVO</div><div style="height:46px;background:#1B1B19;border-radius:6px;margin-bottom:6px;padding:8px;box-sizing:border-box"><i style="display:block;width:16px;height:16px;border-radius:50%;background:#3a3a37"></i></div><div style="height:46px;background:#1B1B19;border-radius:6px"></div></div>
+<div style="flex:1"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96;margin-bottom:6px">CONTACTO</div><div style="height:46px;background:#1B1B19;border-radius:6px;margin-bottom:6px"></div><div style="height:46px;background:#1B1B19;border-radius:6px"></div></div>
+<div style="flex:1"><div style="font-size:9px;letter-spacing:1px;color:#FF5A1F;margin-bottom:6px">PROPUESTA</div><div style="height:46px;background:#FF5A1F;border-radius:6px;margin-bottom:6px;padding:8px;box-sizing:border-box"><i style="display:block;width:16px;height:16px;border-radius:50%;background:#0A0A0A"></i></div><div style="height:46px;background:#1B1B19;border-radius:6px"></div></div>
+</div></div>
+
+<!-- Conector Nexo → Nodo -->
+<i class="dashh" style="position:absolute;left:440px;top:181px;width:98px;height:2px;display:block"></i>
+<i class="dashv" style="position:absolute;left:537px;top:181px;width:2px;height:69px;display:block"></i>
+<i style="position:absolute;left:434px;top:176px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<i style="position:absolute;left:532px;top:244px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;border:2px solid #fff;box-sizing:border-box;display:block"></i>
+
+<!-- WhatsApp -->
+<div class="fy" style="position:absolute;left:24px;top:414px;width:236px;background:#fff;border:1px solid #DCDCD8;border-radius:12px;padding:14px;box-sizing:border-box;animation-delay:-1.2s;display:flex;flex-direction:column;gap:8px">
+<div style="font-size:10px;letter-spacing:1.1px;font-weight:500;color:#5E5E5A">WHATSAPP · ATENCIÓN</div>
+<div style="padding:8px 10px;background:#F4F4F1;border-radius:10px 10px 10px 2px;font-size:12px;line-height:17px">¿Tienen turno para mañana?</div>
+<div style="padding:8px 10px;background:#0A0A0A;color:#fff;border-radius:10px 10px 2px 10px;font-size:12px;line-height:17px;align-self:flex-end">Sí. 10:30 o 15:00.</div>
+<div style="padding:6px 10px;border:1px solid #FF5A1F;color:#C23D0A;border-radius:999px;font-size:11px;align-self:flex-start">✓ Agendado en Nexo</div>
+</div>
+</div>
+</section>
+
+<!-- Franja -->
+<div style="margin:0 80px;border-top:1px solid #E4E4DF;border-bottom:1px solid #E4E4DF;padding:18px 0;display:flex;justify-content:space-between;font-size:13px;letter-spacing:1.2px;color:#5E5E5A;font-weight:500"><span>DESARROLLO WEB</span><span style="color:#FF5A1F">/</span><span>SISTEMAS A MEDIDA</span><span style="color:#FF5A1F">/</span><span>IA Y AUTOMATIZACIÓN</span><span style="color:#FF5A1F">/</span><span>E-COMMERCE</span><span style="color:#FF5A1F">/</span><span>NEXO · NODO</span></div>
+
+<!-- 02 SERVICIOS -->
+<section id="servicios" style="padding:112px 80px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px;width:700px"><span class="eb">01 — SERVICIOS</span><h2 style="margin:0;font-size:52px;line-height:56px;letter-spacing:-1.8px;font-weight:600">Cuatro formas de hacer crecer tu negocio.</h2></div>
+<p style="margin:0;width:340px;font-size:17px;line-height:27px;color:#5E5E5A">Soluciones digitales adaptadas a lo que cada empresa necesita, desde una web hasta un sistema propio.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:20px">
+<!-- Web -->
+<article class="blk" style="flex:7;position:relative;height:400px;box-sizing:border-box;background:#fff;border:1px solid #DCDCD8;border-radius:20px;overflow:hidden;padding:36px">
+<div style="width:250px;display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#C23D0A">01</span><h3 style="margin:0;font-size:32px;line-height:36px;letter-spacing:-.8px;font-weight:600">Desarrollo web</h3><p style="margin:0;font-size:16px;line-height:25px;color:#5E5E5A">Sitios, landing pages y tiendas pensados para comunicar y convertir.</p></div>
+<a class="lnk" data-event="service_interest" data-origin="servicio-web" style="position:absolute;left:36px;bottom:36px" href="https://wa.me/5491178148150?text=Hola%2C%20me%20interesa%20desarrollar%20una%20p%C3%A1gina%20web%20para%20mi%20empresa">Consultar este servicio <span style="color:#FF5A1F">→</span></a>
+<div style="position:absolute;right:-1px;bottom:-1px;width:400px;height:300px;background:#FAFAF8;border:1px solid #DCDCD8;border-radius:14px 0 0 0;overflow:hidden">
+<div style="height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid #E4E4DF"><i style="width:8px;height:8px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:8px;height:8px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:8px;height:8px;border-radius:50%;background:#DCDCD8;display:block"></i><span style="margin-left:10px;height:14px;width:150px;border-radius:7px;background:#EDEDE8;display:block"></span></div>
+<div style="padding:22px 24px;display:flex;gap:18px"><div style="flex:1"><div style="height:12px;width:80%;background:#0A0A0A;margin-bottom:8px"></div><div style="height:12px;width:55%;background:#0A0A0A;margin-bottom:14px"></div><div style="height:6px;width:90%;background:#DCDCD8;margin-bottom:6px"></div><div style="height:6px;width:70%;background:#DCDCD8;margin-bottom:14px"></div><div style="height:22px;width:84px;background:#FF5A1F;border-radius:4px"></div></div><div style="width:130px;height:130px;background:#FF5A1F;border-bottom-left-radius:130px;display:block"></div></div>
+<div style="display:flex;gap:10px;padding:0 24px"><div style="flex:1;height:60px;background:#EDEDE8;border-radius:6px"></div><div style="flex:1;height:60px;background:#EDEDE8;border-radius:6px"></div><div style="flex:1;height:60px;background:#EDEDE8;border-radius:6px"></div></div>
+</div>
+</article>
+<!-- Sistemas -->
+<article class="blk" style="flex:5;position:relative;height:400px;box-sizing:border-box;background:#FF5A1F;border-radius:20px;overflow:hidden;padding:36px">
+<div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500">02</span><h3 style="margin:0;font-size:32px;line-height:36px;letter-spacing:-.8px;font-weight:600">Sistemas y plataformas</h3><p style="margin:0;font-size:16px;line-height:25px;max-width:340px">Software a medida para digitalizar operaciones y ordenar la información.</p></div>
+<a class="lnk" data-event="service_interest" data-origin="servicio-sistemas" style="position:absolute;left:36px;top:204px" href="https://wa.me/5491178148150?text=Hola%2C%20me%20interesa%20un%20sistema%20o%20plataforma%20a%20medida%20para%20mi%20empresa">Consultar este servicio <span>→</span></a>
+<div style="position:absolute;left:36px;right:-1px;bottom:-1px;height:130px;background:#0A0A0A;border-radius:12px 0 0 0;padding:16px 18px;box-sizing:border-box;color:#fff">
+<div style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;color:#9B9B96;padding-bottom:8px;border-bottom:1px solid #222220"><span>PEDIDO</span><span>CLIENTE</span><span>ESTADO</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:8px 0;border-bottom:1px solid #222220"><span>#0412</span><span>Cliente A</span><span style="padding:2px 8px;background:#FF5A1F;color:#0A0A0A;border-radius:999px;font-size:10px">En curso</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:8px 0"><span>#0411</span><span>Cliente B</span><span style="padding:2px 8px;border:1px solid #5E5E5A;border-radius:999px;font-size:10px;color:#9B9B96">Listo</span></div>
+</div>
+</article>
+</div>
+<div style="display:flex;gap:20px">
+<!-- IA -->
+<article class="blk" style="flex:5;position:relative;height:400px;box-sizing:border-box;background:#EDEDE8;border-radius:20px;overflow:hidden;padding:36px">
+<div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#C23D0A">03</span><h3 style="margin:0;font-size:32px;line-height:36px;letter-spacing:-.8px;font-weight:600">IA y automatización</h3><p style="margin:0;font-size:16px;line-height:25px;color:#5E5E5A;max-width:340px">Agentes y procesos automáticos que reducen tareas manuales.</p></div>
+<a class="lnk" data-event="service_interest" data-origin="servicio-ia" style="position:absolute;left:36px;top:204px" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20automatizar%20procesos%20con%20inteligencia%20artificial%20en%20mi%20empresa">Consultar este servicio <span style="color:#FF5A1F">→</span></a>
+<div style="position:absolute;left:36px;right:36px;bottom:36px;height:96px">
+<i style="position:absolute;left:36px;top:47px;width:calc(100% - 72px);height:2px;background:#0A0A0A;display:block"></i>
+<div style="position:absolute;left:0;top:20px;width:56px;height:56px;border-radius:50%;background:#fff;border:1.5px solid #0A0A0A;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:1px;font-weight:500">MSJ</div>
+<div style="position:absolute;left:50%;margin-left:-32px;top:16px;width:64px;height:64px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:1px;font-weight:500">IA</div>
+<div style="position:absolute;right:0;top:20px;width:56px;height:56px;border-radius:12px;background:#FF5A1F;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:1px;font-weight:500">AGENDA</div>
+</div>
+</article>
+<!-- E-commerce -->
+<article class="blk" style="flex:7;position:relative;height:400px;box-sizing:border-box;background:#fff;border:1px solid #DCDCD8;border-radius:20px;overflow:hidden;padding:36px">
+<div style="width:250px;display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#C23D0A">04</span><h3 style="margin:0;font-size:32px;line-height:36px;letter-spacing:-.8px;font-weight:600">E-commerce</h3><p style="margin:0;font-size:16px;line-height:25px;color:#5E5E5A">Venta online con pagos integrados y mejor experiencia de compra.</p></div>
+<a class="lnk" data-event="service_interest" data-origin="servicio-ecommerce" style="position:absolute;left:36px;bottom:36px" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20una%20tienda%20online%20o%20e-commerce%20para%20mi%20negocio">Consultar este servicio <span style="color:#FF5A1F">→</span></a>
+<div style="position:absolute;right:36px;top:36px;bottom:36px;width:370px;display:flex;gap:12px;align-items:flex-start">
+<div style="flex:1;border:1px solid #DCDCD8;border-radius:12px;overflow:hidden"><div style="height:130px;background:#EDEDE8;position:relative"><i style="position:absolute;left:30px;top:30px;width:50px;height:70px;background:#0A0A0A;border-radius:6px 6px 0 0;display:block"></i></div><div style="padding:10px 12px"><div style="height:8px;width:70%;background:#0A0A0A;margin-bottom:6px"></div><div style="height:6px;width:40%;background:#9B9B96"></div></div></div>
+<div style="flex:1;border:1px solid #0A0A0A;border-radius:12px;overflow:hidden;margin-top:36px"><div style="height:130px;background:#FF5A1F;position:relative"><i style="position:absolute;left:34px;top:30px;width:60px;height:60px;border-radius:50%;background:#0A0A0A;display:block"></i></div><div style="padding:10px 12px"><div style="height:8px;width:70%;background:#0A0A0A;margin-bottom:6px"></div><div style="height:6px;width:40%;background:#9B9B96"></div></div></div>
+</div>
+<div style="position:absolute;right:36px;bottom:36px;padding:10px 16px;background:#0A0A0A;color:#fff;border-radius:8px;font-size:12px;letter-spacing:1px;font-weight:500">PAGAR · $ ———</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- 03 ECOSISTEMA -->
+<section id="productos" style="background:#0A0A0A;color:#fff;padding:96px 80px 88px;display:flex;flex-direction:column;gap:64px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px;width:820px"><span class="eb" style="color:#9B9B96">02 — ECOSISTEMA KODEXA</span><h2 style="margin:0;font-size:52px;line-height:56px;letter-spacing:-1.8px;font-weight:600">Desde el primer clic hasta la próxima venta, <span style="color:#FF5A1F">todo conectado.</span></h2></div>
+<p style="margin:0;width:380px;font-size:17px;line-height:27px;color:#9B9B96">Una web que atrae clientes, herramientas que gestionan cada interacción y sistemas que organizan el crecimiento de tu empresa.</p>
+</div>
+<div style="position:relative;height:830px">
+<div style="position:absolute;inset:0;background-image:radial-gradient(#262624 1.2px,transparent 1.4px);background-size:26px 26px;border-radius:20px"></div>
+<div style="position:absolute;left:550px;top:244px;width:180px;height:180px;border:1px solid #222220;border-radius:50%;box-sizing:border-box"></div>
+<i style="position:absolute;left:608px;top:306px;width:34px;height:34px;background:#FF5A1F;display:block"></i><i style="position:absolute;left:628px;top:306px;width:34px;height:34px;border:1.5px solid #fff;border-radius:50%;box-sizing:border-box;display:block"></i><span style="position:absolute;left:560px;width:160px;text-align:center;top:352px;font-size:9px;letter-spacing:1.4px;color:#9B9B96">ECOSISTEMA KODEXA</span>
+<div style="position:absolute;left:0px;top:0px;display:flex;flex-direction:column;gap:3px"><div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:12px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">01</span><span style="font-size:20px;font-weight:600;letter-spacing:-.4px">WEB</span></div><span style="font-size:13px;color:#9B9B96">Presencia y captación · tu web actual o una web Kodexa</span></div>
+<div style="position:absolute;left:780px;top:0px;display:flex;flex-direction:column;gap:3px"><div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:12px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">02</span><span style="font-size:20px;font-weight:600;letter-spacing:-.4px">NEXO</span></div><span style="font-size:13px;color:#9B9B96">Operación y atención · WhatsApp, agenda y servicios</span></div>
+<div style="position:absolute;left:360px;top:424px;display:flex;flex-direction:column;gap:3px"><div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:12px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">03</span><span style="font-size:20px;font-weight:600;letter-spacing:-.4px">NODO</span></div><span style="font-size:13px;color:#9B9B96">Gestión comercial · leads, clientes y pipeline</span></div>
+<div role="img" aria-label="Mockup de un sitio web con un formulario que genera un lead" style="position:absolute;left:0px;top:52px;width:500px;height:350px;border:1px solid #DCDCD8;border-radius:14px;overflow:hidden"><div style="position:relative;width:100%;height:100%;background:#fff;color:#0A0A0A">
+<div style="height:36px;background:#FAFAF8;border-bottom:1px solid #E4E4DF;display:flex;align-items:center;gap:6px;padding:0 14px"><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><span style="margin:0 auto;width:190px;height:20px;border-radius:10px;background:#EDEDE8;font-size:11px;color:#5E5E5A;display:flex;align-items:center;justify-content:center">tuempresa.com</span></div>
+<div style="position:absolute;left:22px;right:22px;top:50px;display:flex;justify-content:space-between;align-items:center"><span style="width:56px;height:10px;background:#0A0A0A;display:block"></span><span style="display:flex;gap:12px"><i style="width:34px;height:6px;background:#DCDCD8;display:block"></i><i style="width:34px;height:6px;background:#DCDCD8;display:block"></i><i style="width:34px;height:6px;background:#DCDCD8;display:block"></i></span></div>
+<div style="position:absolute;left:24px;top:98px;width:210px"><div style="height:16px;width:90%;background:#0A0A0A;margin-bottom:8px"></div><div style="height:16px;width:62%;background:#0A0A0A;margin-bottom:16px"></div><div style="height:6px;width:94%;background:#DCDCD8;margin-bottom:6px"></div><div style="height:6px;width:70%;background:#DCDCD8;margin-bottom:16px"></div><div style="height:28px;width:100px;background:#FF5A1F;border-radius:6px"></div></div>
+<div style="position:absolute;right:20px;top:84px;width:200px;box-sizing:border-box;background:#fff;border:1px solid #CFCFCA;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px"><div style="font-size:13px;font-weight:600">Pedí tu presupuesto</div><div style="height:28px;border:1px solid #DCDCD8;border-radius:6px;background:#FAFAF8;font-size:11px;color:#9B9B96;display:flex;align-items:center;padding:0 9px">Nombre</div><div style="height:28px;border:1px solid #DCDCD8;border-radius:6px;background:#FAFAF8;font-size:11px;color:#9B9B96;display:flex;align-items:center;padding:0 9px">Email</div><div style="height:28px;border:1px solid #DCDCD8;border-radius:6px;background:#FAFAF8;font-size:11px;color:#9B9B96;display:flex;align-items:center;padding:0 9px">¿Qué necesitás?</div><div style="height:32px;background:#FF5A1F;border-radius:6px;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center">Enviar consulta</div><div style="font-size:10px;color:#C23D0A;font-weight:500;display:flex;align-items:center;gap:5px"><i style="width:6px;height:6px;border-radius:50%;background:#FF5A1F;display:block"></i>Se registra como lead</div></div>
+<div style="position:absolute;left:24px;bottom:16px;display:flex;gap:6px"><span style="padding:4px 9px;border:1px solid #DCDCD8;border-radius:999px;font-size:10px;color:#5E5E5A">WordPress</span><span style="padding:4px 9px;border:1px solid #DCDCD8;border-radius:999px;font-size:10px;color:#5E5E5A">Shopify</span><span style="padding:4px 9px;background:#0A0A0A;color:#fff;border-radius:999px;font-size:10px">Web Kodexa</span></div>
+</div></div>
+<div role="img" aria-label="Mockup de Nexo: agenda y conversación de WhatsApp" style="position:absolute;left:780px;top:52px;width:500px;height:310px;border:1px solid #222220;border-radius:14px;overflow:hidden"><div style="position:relative;width:100%;height:100%;background:#121211;color:#fff;display:flex;flex-direction:column"><div style="height:34px;border-bottom:1px solid #222220;display:flex;align-items:center;gap:6px;padding:0 14px;flex:none"><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><span style="margin-left:10px;font-size:12px;color:#9B9B96">Nexo — Atención y agenda</span></div>
+<div style="position:relative;flex:1">
+<div style="position:absolute;left:16px;top:14px;width:220px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><span style="font-size:14px;font-weight:500">Agenda · Hoy</span><span style="font-size:10px;padding:4px 8px;background:#FF5A1F;color:#0A0A0A;border-radius:5px;font-weight:500">+ Turno</span></div>
+<div style="display:flex;gap:10px;padding:9px 10px;background:#222220;border-left:3px solid #9B9B96;border-radius:4px;font-size:12px;margin-bottom:6px"><span style="color:#9B9B96">09:00</span>Servicio A</div>
+<div style="display:flex;gap:10px;padding:9px 10px;background:#FF5A1F;color:#0A0A0A;border-radius:4px;font-size:12px;font-weight:500;margin-bottom:6px"><span>10:30</span>Consulta inicial</div>
+<div style="display:flex;gap:10px;padding:9px 10px;background:#222220;border-left:3px solid #9B9B96;border-radius:4px;font-size:12px;margin-bottom:6px"><span style="color:#9B9B96">12:00</span>Servicio B</div>
+<div style="display:flex;gap:10px;padding:9px 10px;background:#222220;border-left:3px solid #FF5A1F;border-radius:4px;font-size:12px"><span style="color:#9B9B96">15:00</span>Servicio A</div></div>
+<div style="position:absolute;right:16px;top:14px;bottom:16px;width:216px;box-sizing:border-box;background:#0A0A0A;border:1px solid #222220;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;letter-spacing:1px;color:#9B9B96">WHATSAPP</span><span style="font-size:9px;letter-spacing:1px;padding:2px 6px;border:1px solid #FF5A1F;color:#FF5A1F;border-radius:999px">DESDE LA WEB</span></div>
+<div style="padding:7px 9px;background:#222220;border-radius:9px 9px 9px 2px;font-size:11px;line-height:15px">Hola, vi el presupuesto. ¿Tienen turno mañana?</div><div style="padding:7px 9px;background:#FF5A1F;color:#0A0A0A;border-radius:9px 9px 2px 9px;font-size:11px;line-height:15px;align-self:flex-end">Sí. 10:30 o 15:00.</div><div style="padding:7px 9px;background:#222220;border-radius:9px 9px 9px 2px;font-size:11px">10:30 ✓</div><div style="margin-top:auto;padding:6px 8px;border:1px solid #FF5A1F;color:#FF5A1F;border-radius:999px;font-size:10px;text-align:center">✓ Turno agendado</div></div>
+</div></div></div>
+<div role="img" aria-label="Mockup de Nodo: pipeline, clientes y leads" style="position:absolute;left:360px;top:476px;width:560px;height:330px;border:1px solid #222220;border-radius:14px;overflow:hidden"><div style="position:relative;width:100%;height:100%;background:#121211;color:#fff;display:flex;flex-direction:column"><div style="height:34px;border-bottom:1px solid #222220;display:flex;align-items:center;gap:6px;padding:0 14px;flex:none"><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a3a37;display:block"></i><span style="margin-left:10px;font-size:12px;color:#9B9B96">Nodo — Gestión comercial</span></div>
+<div style="position:relative;flex:1">
+<div style="position:absolute;left:16px;top:14px;width:328px;display:flex;gap:8px"><div style="flex:1;padding:7px 10px;border:1px solid #222220;border-radius:8px"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96">LEADS</div><div style="font-size:20px;font-weight:500">24</div></div><div style="flex:1;padding:7px 10px;border:1px solid #222220;border-radius:8px"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96">OPORT.</div><div style="font-size:20px;font-weight:500">8</div></div><div style="flex:1;padding:7px 10px;border:1px solid #FF5A1F;border-radius:8px"><div style="font-size:9px;letter-spacing:1px;color:#FF5A1F">TAREAS</div><div style="font-size:20px;font-weight:500">5</div></div></div>
+<div style="position:absolute;left:16px;top:84px;display:flex;gap:8px"><div style="width:100px"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96;margin-bottom:6px">NUEVO</div><div style="height:50px;background:#FF5A1F;border-radius:7px;margin-bottom:6px;padding:8px;box-sizing:border-box;position:relative"><div style="display:flex;gap:6px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#0A0A0A;display:block;flex:none"></i><i style="height:6px;width:46px;background:#0A0A0A;display:block"></i></div><span style="position:absolute;left:8px;bottom:6px;font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:999px;background:#0A0A0A;color:#FF5A1F">WEB</span></div><div style="height:50px;background:#222220;border-radius:7px;margin-bottom:6px;padding:8px;box-sizing:border-box;position:relative"><div style="display:flex;gap:6px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#5E5E5A;display:block;flex:none"></i><i style="height:6px;width:46px;background:#5E5E5A;display:block"></i></div><span style="position:absolute;left:8px;bottom:6px;font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:999px;background:#3a3a37;color:#9B9B96">NEXO</span></div></div><div style="width:100px"><div style="font-size:9px;letter-spacing:1px;color:#9B9B96;margin-bottom:6px">CONTACTO</div><div style="height:50px;background:#222220;border-radius:7px;margin-bottom:6px;padding:8px;box-sizing:border-box;position:relative"><div style="display:flex;gap:6px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#5E5E5A;display:block;flex:none"></i><i style="height:6px;width:46px;background:#5E5E5A;display:block"></i></div></div><div style="height:50px;background:#222220;border-radius:7px;margin-bottom:6px;padding:8px;box-sizing:border-box;position:relative"><div style="display:flex;gap:6px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#5E5E5A;display:block;flex:none"></i><i style="height:6px;width:46px;background:#5E5E5A;display:block"></i></div><span style="position:absolute;left:8px;bottom:6px;font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:999px;background:#3a3a37;color:#9B9B96">NEXO</span></div></div><div style="width:100px"><div style="font-size:9px;letter-spacing:1px;color:#FF5A1F;margin-bottom:6px">PROPUESTA</div><div style="height:50px;background:#FF5A1F;border-radius:7px;margin-bottom:6px;padding:8px;box-sizing:border-box;position:relative"><div style="display:flex;gap:6px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#0A0A0A;display:block;flex:none"></i><i style="height:6px;width:46px;background:#0A0A0A;display:block"></i></div><span style="position:absolute;left:8px;bottom:6px;font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:999px;background:#0A0A0A;color:#FFE8DD">NEXO</span></div></div></div>
+<div style="position:absolute;right:16px;top:14px;bottom:16px;width:176px;box-sizing:border-box;background:#0A0A0A;border:1px solid #222220;border-radius:10px;padding:12px"><div style="font-size:10px;letter-spacing:1px;color:#9B9B96;margin-bottom:10px">CLIENTES</div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #222220"><i style="width:22px;height:22px;border-radius:50%;background:#FF5A1F;display:block;flex:none"></i><div><div style="height:6px;width:70px;background:#9B9B96;margin-bottom:5px"></div><div style="height:5px;width:44px;background:#3a3a37"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #222220"><i style="width:22px;height:22px;border-radius:50%;background:#5E5E5A;display:block;flex:none"></i><div><div style="height:6px;width:60px;background:#9B9B96;margin-bottom:5px"></div><div style="height:5px;width:40px;background:#3a3a37"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #222220"><i style="width:22px;height:22px;border-radius:50%;background:#5E5E5A;display:block;flex:none"></i><div><div style="height:6px;width:76px;background:#9B9B96;margin-bottom:5px"></div><div style="height:5px;width:36px;background:#3a3a37"></div></div></div>
+<div style="margin-top:12px;padding:7px 9px;border:1px solid #FF5A1F;border-radius:8px;font-size:10px;color:#FF5A1F;line-height:15px">+ Nueva oportunidad desde una conversación</div></div>
+</div></div></div>
+<i class="dashh" style="position:absolute;left:500px;top:207px;width:280px;height:2px;display:block"></i>
+<i style="position:absolute;left:494px;top:202px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<i style="position:absolute;left:774px;top:202px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<div style="position:absolute;left:558px;top:195px;width:164px;height:26px;display:flex;align-items:center;justify-content:center;background:#0A0A0A;border:1px solid #FF5A1F;border-radius:999px;font-size:10px;letter-spacing:1.1px;font-weight:500;color:#FF5A1F;box-sizing:border-box;white-space:nowrap">CONSULTA · CHAT</div>
+<i class="dashv" style="position:absolute;left:249px;top:402px;width:2px;height:238px;display:block"></i>
+<i class="dashh" style="position:absolute;left:250px;top:639px;width:110px;height:2px;display:block"></i>
+<i style="position:absolute;left:244px;top:396px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<i style="position:absolute;left:354px;top:634px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<div style="position:absolute;left:162px;top:507px;width:176px;height:26px;display:flex;align-items:center;justify-content:center;background:#0A0A0A;border:1px solid #FF5A1F;border-radius:999px;font-size:10px;letter-spacing:1.1px;font-weight:500;color:#FF5A1F;box-sizing:border-box;white-space:nowrap">FORMULARIO → LEAD</div>
+<i class="dashv" style="position:absolute;left:1029px;top:362px;width:2px;height:278px;display:block"></i>
+<i class="dashh" style="position:absolute;left:920px;top:639px;width:110px;height:2px;display:block"></i>
+<i style="position:absolute;left:1024px;top:356px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<i style="position:absolute;left:914px;top:634px;width:12px;height:12px;border-radius:50%;background:#FF5A1F;display:block"></i>
+<div style="position:absolute;left:922px;top:487px;width:216px;height:26px;display:flex;align-items:center;justify-content:center;background:#0A0A0A;border:1px solid #FF5A1F;border-radius:999px;font-size:10px;letter-spacing:1.1px;font-weight:500;color:#FF5A1F;box-sizing:border-box;white-space:nowrap">CONVERSACIÓN ⇄ OPORTUNIDAD</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<span style="font-size:12px;letter-spacing:1.2px;font-weight:500;color:#9B9B96">UN EJEMPLO, PASO A PASO</span>
+<div style="display:flex;gap:32px"><div style="flex:1;border-top:1px solid #3a3a37;padding-top:18px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">01</span><span style="font-size:18px;line-height:26px;font-weight:500;letter-spacing:-.2px">Un cliente visita la web.</span></div><div style="flex:1;border-top:1px solid #3a3a37;padding-top:18px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">02</span><span style="font-size:18px;line-height:26px;font-weight:500;letter-spacing:-.2px">Completa un formulario o inicia una conversación.</span></div><div style="flex:1;border-top:1px solid #3a3a37;padding-top:18px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">03</span><span style="font-size:18px;line-height:26px;font-weight:500;letter-spacing:-.2px">La información llega al sistema correspondiente.</span></div><div style="flex:1;border-top:1px solid #3a3a37;padding-top:18px;display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;letter-spacing:1.2px;font-weight:500;color:#FF5A1F">04</span><span style="font-size:18px;line-height:26px;font-weight:500;letter-spacing:-.2px">La empresa atiende, organiza y hace seguimiento desde sus herramientas.</span></div></div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:48px;padding-top:40px;border-top:1px solid #222220">
+<div style="display:flex;flex-direction:column;gap:10px;max-width:600px"><p style="margin:0;font-size:17px;line-height:26px;font-weight:500">Web, Nexo y Nodo pueden contratarse por separado o integrarse en una solución completa.</p><p style="margin:0;font-size:13px;line-height:20px;color:#9B9B96;display:flex;gap:10px;align-items:flex-start"><i style="width:8px;height:8px;border:1px solid #FF5A1F;border-radius:50%;display:block;flex:none;margin-top:6px"></i>Las integraciones se habilitan de forma progresiva: esta imagen muestra la visión del ecosistema, con datos de ejemplo.</p></div>
+<div style="display:flex;gap:24px;align-items:center;flex:none">
+<a class="lnk" data-event="service_interest" data-origin="ecosistema-web" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20conectar%20mi%20web%20con%20el%20ecosistema%20Kodexa">Web <span style="color:#FF5A1F">→</span></a>
+<a class="lnk" data-event="nexo_interest" data-origin="nexo" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20Nexo">Nexo <span style="color:#FF5A1F">→</span></a>
+<a class="lnk" data-event="nodo_interest" data-origin="nodo" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20Nodo">Nodo <span style="color:#FF5A1F">→</span></a>
+<a class="btn btn-p" data-event="ecosystem_interest" data-origin="ecosistema" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20conocer%20c%C3%B3mo%20funciona%20el%20ecosistema%20Kodexa">Quiero conocer el ecosistema <span>→</span></a>
+</div></div>
+</section>
+
+<!-- 04 PROYECTOS -->
+<section id="proyectos" style="padding:112px 80px;display:flex;flex-direction:column;gap:64px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px;width:700px"><span class="eb">03 — PROYECTOS</span><h2 style="margin:0;font-size:52px;line-height:56px;letter-spacing:-1.8px;font-weight:600">Trabajo reciente.</h2></div>
+<p style="margin:0;width:360px;font-size:17px;line-height:27px;color:#5E5E5A">Cada proyecto parte de un problema concreto del negocio y termina en una herramienta que se usa todos los días.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:flex-start">
+<article class="blk" style="flex:7;display:flex;flex-direction:column;gap:24px">
+<div style="position:relative;height:540px;background:#EDEDE8;border-radius:20px;overflow:hidden">
+<i style="position:absolute;right:-60px;top:-60px;width:260px;height:260px;background:#FF5A1F;border-radius:50%;display:block"></i>
+<div style="position:absolute;left:56px;top:64px;right:-30px;bottom:-1px;background:#fff;border:1px solid #DCDCD8;border-radius:14px 0 0 0;overflow:hidden">
+<div style="height:36px;border-bottom:1px solid #E4E4DF;display:flex;align-items:center;gap:6px;padding:0 14px;background:#FAFAF8"><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#DCDCD8;display:block"></i></div>
+<div style="padding:28px 36px;display:flex;justify-content:space-between"><div style="height:10px;width:90px;background:#0A0A0A"></div><div style="display:flex;gap:14px"><i style="height:6px;width:40px;background:#DCDCD8;display:block;margin-top:2px"></i><i style="height:6px;width:40px;background:#DCDCD8;display:block;margin-top:2px"></i><i style="height:6px;width:40px;background:#DCDCD8;display:block;margin-top:2px"></i></div></div>
+<div style="padding:24px 36px;display:flex;gap:30px"><div style="flex:1"><div style="height:22px;width:85%;background:#0A0A0A;margin-bottom:10px"></div><div style="height:22px;width:60%;background:#0A0A0A;margin-bottom:22px"></div><div style="height:8px;width:90%;background:#DCDCD8;margin-bottom:8px"></div><div style="height:8px;width:75%;background:#DCDCD8;margin-bottom:22px"></div><div style="height:34px;width:120px;background:#FF5A1F;border-radius:6px"></div></div><div style="width:240px;height:210px;background:#0A0A0A;border-radius:12px"></div></div>
+</div>
+<span style="position:absolute;left:24px;top:24px;padding:6px 12px;background:#fff;border-radius:999px;font-size:11px;letter-spacing:1.1px;font-weight:500">VISTA ILUSTRATIVA</span>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px"><div style="display:flex;flex-direction:column;gap:6px"><span class="eb">01 — [CATEGORÍA]</span><h3 style="margin:0;font-size:30px;line-height:36px;letter-spacing:-.6px;font-weight:600">[Nombre del proyecto]</h3><p style="margin:0;font-size:16px;line-height:25px;color:#5E5E5A;max-width:460px">[Una línea sobre el problema y la solución. Completar con datos verificados.]</p></div><a class="lnk" style="flex:none" data-event="whatsapp_click" data-origin="proyecto-01" href="https://wa.me/5491178148150?text=Hola%2C%20vi%20los%20proyectos%20de%20Kodexa%20y%20quiero%20algo%20similar">Quiero algo similar <span style="color:#FF5A1F">→</span></a></div>
+</article>
+<article class="blk" style="flex:5;display:flex;flex-direction:column;gap:24px;margin-top:80px">
+<div style="position:relative;height:540px;background:#0A0A0A;border-radius:20px;overflow:hidden">
+<i style="position:absolute;left:-70px;bottom:-70px;width:250px;height:250px;border:1.5px solid #FF5A1F;border-radius:50%;box-sizing:border-box;display:block"></i>
+<div style="position:absolute;left:50%;margin-left:-110px;top:60px;width:220px;height:470px;background:#121211;border:1px solid #3a3a37;border-radius:32px 32px 0 0;overflow:hidden;padding:22px 16px;box-sizing:border-box">
+<div style="width:60px;height:5px;background:#3a3a37;border-radius:3px;margin:0 auto 22px"></div>
+<div style="font-size:11px;letter-spacing:1px;color:#9B9B96;margin-bottom:12px">PANEL</div>
+<div style="display:flex;gap:8px;margin-bottom:12px"><div style="flex:1;padding:10px;border:1px solid #222220;border-radius:10px"><div style="font-size:9px;color:#9B9B96">HOY</div><div style="font-size:22px;color:#fff;font-weight:500">18</div></div><div style="flex:1;padding:10px;background:#FF5A1F;border-radius:10px"><div style="font-size:9px;color:#0A0A0A">PENDIENTES</div><div style="font-size:22px;color:#0A0A0A;font-weight:500">4</div></div></div>
+<div style="height:54px;background:#222220;border-radius:10px;margin-bottom:8px"></div><div style="height:54px;background:#222220;border-radius:10px;margin-bottom:8px"></div><div style="height:54px;background:#222220;border-radius:10px"></div>
+</div>
+<span style="position:absolute;left:24px;top:24px;padding:6px 12px;background:#fff;border-radius:999px;font-size:11px;letter-spacing:1.1px;font-weight:500">VISTA ILUSTRATIVA</span>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px"><div style="display:flex;flex-direction:column;gap:6px"><span class="eb">02 — [CATEGORÍA]</span><h3 style="margin:0;font-size:30px;line-height:36px;letter-spacing:-.6px;font-weight:600">[Nombre del proyecto]</h3><p style="margin:0;font-size:16px;line-height:25px;color:#5E5E5A;max-width:340px">[Una línea sobre el problema y la solución.]</p></div><a class="lnk" style="flex:none" data-event="whatsapp_click" data-origin="proyecto-02" href="https://wa.me/5491178148150?text=Hola%2C%20vi%20los%20proyectos%20de%20Kodexa%20y%20quiero%20algo%20similar">Similar <span style="color:#FF5A1F">→</span></a></div>
+</article>
+</div>
+</section>
+
+<!-- 05 CONTACTO -->
+<section id="contacto" style="display:flex;background:#F4F4F1">
+<div style="width:640px;flex:none;box-sizing:border-box;background:#0A0A0A;color:#fff;padding:112px 128px 96px 80px;display:flex;flex-direction:column;position:relative">
+<span style="display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:1.4px;font-weight:500;color:#FF5A1F"><i class="pl" style="width:7px;height:7px;border-radius:50%;background:#FF5A1F;display:block"></i>04 — HABLEMOS</span>
+<h2 style="margin:28px 0 0;font-size:50px;line-height:53px;letter-spacing:-1.8px;font-weight:600">¿Tenés un proyecto en mente? <span style="color:#6f6f6a">Hagámoslo realidad.</span></h2>
+<p style="margin:24px 0 0;font-size:18px;line-height:28px;color:#9B9B96;max-width:400px">Contanos qué necesitás. Nos interesa entender tu negocio antes de proponerte una solución.</p>
+<a class="wal" data-event="whatsapp_click" data-origin="contacto" style="margin-top:40px;padding:0 24px;height:64px;font-size:17px;align-self:stretch;max-width:420px;box-sizing:border-box" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20iniciar%20una%20conversaci%C3%B3n%20con%20Kodexa"><span style="display:flex;align-items:center;gap:12px"><i style="width:18px;height:18px;background:#0A0A0A;border-radius:50% 50% 50% 4px;display:block"></i>Hablemos por WhatsApp</span><span style="font-size:20px">→</span></a>
+<span style="margin-top:12px;font-size:13px;color:#6f6f6a">Conversación directa, sin esperar respuesta por mail.</span>
+<div style="margin-top:72px;display:flex;flex-direction:column;gap:14px;font-size:15px;color:#fff"><a class="ul" href="mailto:contacto@kodexa.ar" data-event="email_click" data-origin="contacto" style="align-self:flex-start;padding-bottom:3px">contacto@kodexa.ar</a><span style="font-size:13px;color:#6f6f6a;line-height:21px">Web · Sistemas a medida · IA · E-commerce &nbsp;<a href="#servicios" style="color:#9B9B96;border-bottom:1px solid #3a3a37">Ver servicios</a></span></div>
+<i style="position:absolute;left:0;bottom:0;width:96px;height:96px;background:#FF5A1F;border-radius:0 96px 0 0;display:block"></i>
+</div>
+<div style="flex:1;min-width:0;padding:104px 80px 104px 0;margin-left:-72px;position:relative;z-index:2">
+<div class="rv2" style="position:relative;background:#fff;border:1px solid #E8E8E3;border-radius:24px;padding:44px;box-shadow:0 1px 2px rgba(10,10,10,.04),0 40px 80px -40px rgba(10,10,10,.28)">
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;padding:48px 0">
+<span style="width:48px;height:48px;border-radius:50%;background:#FF5A1F;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600">✓</span>
+<h3 style="margin:0;font-size:32px;line-height:1.15;letter-spacing:-1px;font-weight:600">Recibimos tu consulta.</h3>
+<p style="margin:0;font-size:16px;line-height:25px;color:#5E5E5A;max-width:420px">Te vamos a escribir para entender tu negocio antes de proponerte nada. Si preferís ir más rápido, seguimos por WhatsApp.</p>
+<div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><a class="wal" data-event="whatsapp_click" data-origin="contacto-confirmacion" style="padding:0 20px;height:52px;font-size:15px" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20iniciar%20una%20conversaci%C3%B3n%20con%20Kodexa">Seguir por WhatsApp <span>→</span></a><button type="button" onClick="{{ reset }}" style="background:none;border:0;font:500 14px 'IBM Plex Sans',sans-serif;color:#5E5E5A;cursor:pointer;text-decoration:underline;padding:8px 0">Enviar otra consulta</button></div>
+</div>
+</sc-if>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<form id="v-form" style="display:flex;flex-direction:column;gap:20px" onSubmit="{{ submit }}" data-origin="contacto-form">
+<input type="hidden" name="origen" value="web-landing-v2/contacto"><input type="hidden" name="tipo_consulta" value="{{ tipoVal }}"><input type="hidden" name="pagina" value="kodexa.ar/#contacto">
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-size:34px;line-height:1.1;letter-spacing:-1.1px;font-weight:600">Empecemos por conocernos.</h3></div>
+<div role="radiogroup" aria-labelledby="v-q" style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span id="v-q" class="fl2">¿QUÉ NECESITÁS DESARROLLAR?</span><span style="font-size:12px;color:#9B9B96">Elegí una</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"><button type="button" role="radio" aria-checked="{{ a0 }}" class="{{ c0 }}" data-event="project_type_select" onClick="{{ pick0 }}"><span class="ck"></span><i style="width:20px;height:15px;border:1.5px solid #0A0A0A;border-top-width:4px;border-radius:3px;display:block;box-sizing:border-box"></i><span>Desarrollo web</span></button><button type="button" role="radio" aria-checked="{{ a1 }}" class="{{ c1 }}" data-event="project_type_select" onClick="{{ pick1 }}"><span class="ck"></span><i style="width:18px;height:18px;display:grid;grid-template-columns:1fr 1fr;gap:3px"><b style="background:#0A0A0A;display:block"></b><b style="background:#FF5A1F;display:block"></b><b style="background:#FF5A1F;display:block"></b><b style="background:#0A0A0A;display:block"></b></i><span>Sistema a medida</span></button><button type="button" role="radio" aria-checked="{{ a2 }}" class="{{ c2 }}" data-event="project_type_select" onClick="{{ pick2 }}"><span class="ck"></span><i style="width:16px;height:16px;background:#0A0A0A;transform:rotate(45deg);border-radius:3px;display:block;box-shadow:6px -6px 0 -3px #FF5A1F"></i><span>IA y automatización</span></button><button type="button" role="radio" aria-checked="{{ a3 }}" class="{{ c3 }}" data-event="project_type_select" onClick="{{ pick3 }}"><span class="ck"></span><i style="width:18px;height:14px;border:1.5px solid #0A0A0A;border-radius:2px 2px 5px 5px;display:block;box-sizing:border-box;margin-top:3px"></i><span>E-commerce</span></button><button type="button" role="radio" aria-checked="{{ a4 }}" class="{{ c4 }}" data-event="project_type_select" onClick="{{ pick4 }}"><span class="ck"></span><span style="display:flex;align-items:center"><i style="width:12px;height:12px;background:#FF5A1F;border-radius:2px;display:block"></i><i style="width:13px;height:13px;border:1.5px solid #0A0A0A;border-radius:50%;margin-left:-3px;display:block;box-sizing:border-box"></i></span><span>Nexo / Nodo</span></button><button type="button" role="radio" aria-checked="{{ a5 }}" class="{{ c5 }}" data-event="project_type_select" onClick="{{ pick5 }}"><span class="ck"></span><i style="width:18px;height:18px;border:1.5px dashed #0A0A0A;border-radius:50%;display:block;box-sizing:border-box"></i><span>Tengo una idea</span></button></div></div>
+<div style="display:flex;gap:16px"><div style="flex:1;display:flex;flex-direction:column;gap:8px"><label for="v-nombre" class="fl2">NOMBRE</label><input id="v-nombre" name="nombre" class="fld" type="text" autocomplete="name" placeholder="Tu nombre" required></div><div style="flex:1;display:flex;flex-direction:column;gap:8px"><label for="v-empresa" class="fl2">EMPRESA</label><input id="v-empresa" name="empresa" class="fld" type="text" autocomplete="organization" placeholder="Nombre de tu empresa"></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="v-email" class="fl2">EMAIL</label><input id="v-email" name="email" class="fld" type="email" autocomplete="email" placeholder="tu@empresa.com" required></div>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="v-msg" class="fl2">DESCRIPCIÓN DEL PROYECTO</label><textarea id="v-msg" name="descripcion" class="fld" placeholder="Qué querés lograr, para cuándo y qué te preocupa…" style="height:120px;padding:15px 16px;resize:none"></textarea></div>
+<button class="send" type="submit" data-event="form_submit" data-origin="contacto-form">Enviar consulta <span>↗</span></button>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px;color:#5E5E5A"><span>Usamos tus datos solo para responderte.</span><a class="lnk" data-event="whatsapp_click" data-origin="contacto-form-alt" style="font-size:13px" href="https://wa.me/5491178148150?text=Hola%2C%20quiero%20iniciar%20una%20conversaci%C3%B3n%20con%20Kodexa">¿Preferís WhatsApp? <span style="color:#FF5A1F">→</span></a></div>
+</form>
+</sc-if>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0A0A0A;color:#fff;padding:72px 80px 36px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;justify-content:space-between;gap:64px">
+<div style="width:340px;display:flex;flex-direction:column;gap:18px"><div style="display:flex;align-items:center;gap:10px"><span style="position:relative;width:26px;height:18px;display:block"><i style="position:absolute;left:0;top:1px;width:16px;height:16px;background:#FF5A1F;display:block"></i><i style="position:absolute;left:8px;top:1px;width:16px;height:16px;border:1.5px solid #fff;border-radius:50%;display:block;box-sizing:border-box"></i></span><span style="font-size:24px;font-weight:600;letter-spacing:-.8px">kodexa</span></div><p style="margin:0;font-size:14px;line-height:22px;color:#9B9B96">Estudio de producto digital. Desarrollamos soluciones web, software y productos propios para empresas.</p></div>
+<div style="display:flex;gap:88px">
+<div style="display:flex;flex-direction:column;gap:12px"><span class="eb" style="color:#9B9B96">NAVEGACIÓN</span><a class="fl" href="#servicios">Servicios</a><a class="fl" href="#productos">Productos</a><a class="fl" href="#proyectos">Proyectos</a><a class="fl" href="#contacto">Contacto</a></div>
+<div style="display:flex;flex-direction:column;gap:12px"><span class="eb" style="color:#9B9B96">PRODUCTOS</span><a class="fl" href="#productos">Nexo</a><a class="fl" href="#productos">Nodo</a></div>
+<div style="display:flex;flex-direction:column;gap:12px"><span class="eb" style="color:#9B9B96">CONTACTO</span><a class="fl" href="#contacto">Instagram</a><a class="fl" href="https://wa.me/5491178148150">WhatsApp</a><a class="fl" href="mailto:contacto@kodexa.ar">contacto@kodexa.ar</a></div>
+</div></div>
+<div style="border-top:1px solid #222220;padding-top:22px;display:flex;justify-content:space-between;font-size:13px;color:#9B9B96"><span>© 2026 Kodexa. Todos los derechos reservados.</span><span>kodexa.ar</span></div>
+</footer>
+
+<div style="position:sticky;bottom:24px;height:0;display:flex;justify-content:flex-end;padding-right:32px;z-index:30">
+<a data-event="whatsapp_click" data-origin="flotante" aria-label="Escribinos por WhatsApp" href="https://wa.me/5491178148150?text=Hola%2C%20tengo%20una%20consulta%20para%20Kodexa" style="transform:translateY(-100%);display:inline-flex;align-items:center;gap:12px;padding:16px 22px;background:#FF5A1F;color:#0A0A0A;border-radius:12px;font-weight:500;font-size:15px;border:1px solid #0A0A0A"><span style="width:20px;height:20px;background:#0A0A0A;border-radius:50% 50% 50% 4px;display:block"></span>Escribinos</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+renderVals() {
+const names = ['Desarrollo web','Sistema a medida','IA y automatización','E-commerce','Nexo / Nodo','Tengo una idea'];
+const sel = (this.state && typeof this.state.tipo === 'number') ? this.state.tipo : 0;
+const sent = !!(this.state && this.state.sent);
+const out = {
+sent: sent, notSent: !sent, tipoVal: names[sel],
+submit: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+try {
+const ev = { event: 'generate_lead', form_id: 'contacto', origin: 'contacto-form', project_type: names[sel] };
+(window.dataLayer = window.dataLayer || []).push(ev);
+if (window.gtag) window.gtag('event', 'generate_lead', { origin: 'contacto-form', project_type: names[sel] });
+} catch (err) {}
+this.setState({ sent: true });
+},
+reset: () => this.setState({ sent: false }),
+};
+names.forEach((n, i) => {
+out['c' + i] = i === sel ? 'opt on' : 'opt';
+out['a' + i] = i === sel ? 'true' : 'false';
+out['pick' + i] = () => this.setState({ tipo: i });
+});
+return out;
+}
+}
+</script>
+</body>
+</html>
