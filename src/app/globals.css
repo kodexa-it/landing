@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* Identidad Kodexa: blanco, negro y naranja de marca (#FB6E1A, valor oficial del sitio original). */
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #111111;
+  --color-mist: #f5f5f5;
+  --color-line: rgb(17 17 17 / 0.1);
+  --color-muted: #6a6a6a; /* #777 decorativo; #6a6a6a para texto (contraste AA sobre blanco) */
+  --color-brand: #fb6e1a;
+  --color-brand-ink: #b9460a; /* naranja apto para texto pequeño sobre blanco */
+  --color-graphite: #181818;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --radius-card: 1.25rem;
+  --shadow-soft: 0 1px 2px rgb(17 17 17 / 0.04), 0 12px 32px -12px rgb(17 17 17 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(17 17 17 / 0.05), 0 28px 60px -24px rgb(17 17 17 / 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+::selection { background: var(--color-brand); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; border-radius: 6px; }
+.on-dark :focus-visible { outline-color: #fff; }
+
+/* Anclas: dejan lugar al header sticky. */
+section[id] { scroll-margin-top: 72px; }
+
+/* Tipografía: pocos tamaños, bien jerarquizados. */
+.t-display { font-size: clamp(2.6rem, 7.2vw, 6rem); line-height: 0.98; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance; }
+.t-h2 { font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.04; letter-spacing: -0.035em; font-weight: 600; text-wrap: balance; }
+.t-h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.15; letter-spacing: -0.025em; font-weight: 600; text-wrap: balance; }
+.t-lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--color-muted); text-wrap: pretty; }
+.t-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* Grilla editorial sutil de fondo (solo hero). */
+.bg-grid {
+  background-image: linear-gradient(var(--color-line) 1px, transparent 1px), linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, #000 20%, transparent 75%);
+}
+.bg-dots-dark {
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Línea de flujo animada (SVG). */
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.flow-line { stroke-dasharray: 4 8; animation: dash 1.6s linear infinite; }
+@keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(2.4); opacity: 0; } }
+.pulse-ring { animation: pulse-ring 2.4s ease-out infinite; }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.float-slow { animation: float-y 7s ease-in-out infinite; }
