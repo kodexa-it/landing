@@ -44,9 +44,9 @@ export function Header() {
           <Logo />
         </a>
 
-        <nav aria-label="Principal" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Principal" className="hidden items-center gap-8 xl:flex">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-[0.92rem] text-muted transition-colors hover:text-ink">
+            <a key={item.href} href={item.href} className="whitespace-nowrap text-[0.92rem] text-muted transition-colors hover:text-ink">
               {item.label}
             </a>
           ))}
@@ -61,7 +61,7 @@ export function Header() {
           <button
             ref={toggleRef}
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-line lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-line xl:hidden"
             aria-expanded={open}
             aria-controls="menu-movil"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -73,7 +73,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div id="menu-movil" className="fixed inset-x-0 top-[68px] bottom-0 overflow-y-auto border-t border-line bg-white px-5 pb-10 pt-6 lg:hidden">
+        <div id="menu-movil" className="fixed inset-x-0 top-[68px] bottom-0 overflow-y-auto border-t border-line bg-white px-5 pb-10 pt-6 xl:hidden">
           <nav aria-label="Menú móvil" className="flex flex-col">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="border-b border-line py-4 text-xl font-medium tracking-tight">

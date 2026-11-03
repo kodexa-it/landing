@@ -4,10 +4,10 @@ import { FeatureList } from "@/components/ui/Check"
 import { Cta } from "@/components/ui/Cta"
 import { Reveal } from "@/components/ui/Reveal"
 import { site } from "@/lib/config"
+import { NodoSpotlight } from "@/components/sections/NodoSpotlight"
 
 const web = ["Presencia digital profesional.", "Posicionamiento orgánico y SEO.", "Captación de oportunidades.", "Experiencias adaptadas a cada negocio.", "Integración con herramientas comerciales."]
 const nexo = ["Atención mediante WhatsApp.", "Respuestas asistidas por inteligencia artificial.", "Personalidad y conocimiento adaptados al negocio.", "Calificación de leads.", "Automatización de consultas.", "Integración con la presencia digital."]
-const nodo = ["Gestión de contactos.", "Pipeline comercial.", "Seguimiento de oportunidades.", "Tareas y actividades.", "Automatizaciones.", "Organización comercial."]
 
 function Tag({ n, name }: { n: string; name: string }) {
   return (
@@ -45,13 +45,13 @@ export function Ecosystem() {
                 Desarrollamos sitios web que representan tu marca, comunican tus servicios y funcionan como un activo digital para atraer visitantes y generar oportunidades.
               </p>
               <div className="mt-6"><FeatureList items={web} /></div>
-              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div className="mt-7 mb-9 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <Cta ctx={{ section: "ecosistema-web", product: "web", type: "card" }} href="#soluciones-web">Conocé nuestras soluciones web</Cta>
                 <Cta ctx={{ section: "ecosistema-web", product: "web", type: "link" }} href="#proyectos" variant="ghost">Explorá nuestros desarrollos</Cta>
               </div>
               <Browser
-                className="mt-9 -mb-16 translate-x-6 sm:translate-x-12"
-                src="/projects/wt-desktop.webp" alt="Sitio de Waste Treatment desarrollado por Kodexa" width={1440} height={900} sizes="(min-width:1024px) 640px, 90vw"
+                className="mt-auto -mb-14 translate-x-8 sm:translate-x-12"
+                src="/projects/wt-desktop.webp" alt="Sitio de Waste Treatment desarrollado por Kodexa" width={1440} height={900} sizes="(min-width:1024px) 600px, 90vw"
               />
             </article>
           </Reveal>
@@ -87,29 +87,7 @@ export function Ecosystem() {
             </article>
           </Reveal>
 
-          {/* NODO */}
-          <Reveal delay={0.12} className="lg:col-span-12">
-            <article className="grid grid-cols-1 overflow-hidden rounded-[1.5rem] border border-line bg-white shadow-soft lg:grid-cols-[0.8fr_1.2fr]">
-              <div className="p-7 sm:p-9">
-                <Tag n="03" name="Nodo" />
-                <h3 className="t-h3">Todas tus oportunidades, en un solo lugar.</h3>
-                <p className="mt-4 text-muted">
-                  Nodo es el CRM de Kodexa para centralizar clientes, leads y oportunidades comerciales, organizar procesos y automatizar el seguimiento.
-                </p>
-                <div className="mt-6"><FeatureList items={nodo} /></div>
-                <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <Cta ctx={{ section: "ecosistema-nodo", product: "nodo", type: "card" }} whatsapp="nodo">Conocé Nodo</Cta>
-                </div>
-              </div>
-              <div className="relative bg-mist p-6 sm:p-9 lg:pr-0">
-                <Browser
-                  className="lg:rounded-r-none lg:border-r-0"
-                  src="/images/nodo-pipeline.webp" alt="Tablero Kanban de oportunidades en Nodo" width={1800} height={1012}
-                  caption="Nodo · datos de demostración" sizes="(min-width:1024px) 720px, 90vw"
-                />
-              </div>
-            </article>
-          </Reveal>
+          <NodoSpotlight />
         </div>
       </div>
     </section>

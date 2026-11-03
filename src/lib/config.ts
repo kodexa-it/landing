@@ -38,6 +38,7 @@ export const analyticsIds = {
 
 export const navItems = [
   { label: "Ecosistema", href: "#ecosistema" },
+  { label: "Nodo CRM", href: "#nodo" },
   { label: "Soluciones web", href: "#soluciones-web" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Desarrollo a medida", href: "#desarrollo-a-medida" },

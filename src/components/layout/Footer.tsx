@@ -43,7 +43,7 @@ export function Footer() {
             <h2 className="t-label mb-1 text-white/40">Ecosistema</h2>
             <a className={link} href="#ecosistema">Web</a>
             <a className={link} href="#ecosistema">Nexo</a>
-            <a className={link} href="#ecosistema">Nodo</a>
+            <a className={link} href="#nodo">Nodo (CRM)</a>
             <a className={link} href="#como-funciona">Cómo funciona</a>
           </nav>
 

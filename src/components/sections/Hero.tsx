@@ -37,7 +37,7 @@ function HeroVisual() {
       <div className="absolute bottom-0 left-[3%] z-10 w-[80%] overflow-hidden rounded-2xl border border-line bg-white shadow-lift">
         <div className="flex items-center gap-1.5 border-b border-line bg-mist px-3 py-2">
           <span className="size-2 rounded-full bg-ink/15" /><span className="size-2 rounded-full bg-ink/15" /><span className="size-2 rounded-full bg-ink/15" />
-          <span className="t-label ml-2 text-[0.6rem] text-muted">Nodo · demo</span>
+          <span className="t-label ml-2 text-[0.6rem] text-muted">Nodo · CRM · demo</span>
         </div>
         <Image src="/images/nodo-pipeline.webp" alt="Pipeline comercial de Nodo, el CRM de Kodexa, con datos de demostración" width={1800} height={1012} sizes="(min-width:1024px) 410px, 74vw" className="h-auto w-full object-cover object-left-top" />
       </div>
@@ -76,7 +76,7 @@ export function Hero() {
             <ul className="t-label mt-12 flex flex-wrap gap-x-6 gap-y-2 text-muted">
               <li><span className="text-ink">Web</span> atrae</li>
               <li><span className="text-ink">Nexo</span> conecta</li>
-              <li><span className="text-ink">Nodo</span> organiza</li>
+              <li><a href="#nodo" className="inline-flex items-center gap-1.5 hover:text-ink"><span className="size-1.5 rounded-full bg-brand" aria-hidden /><span className="text-ink">Nodo</span> organiza</a></li>
               <li><span className="text-brand-ink">Kodexa</span> integra</li>
             </ul>
           </Reveal>
