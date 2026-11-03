@@ -1,4 +1,6 @@
-import { serviceOptions } from "@/lib/config"
+import { serviceValues } from "@/lib/config"
+import type { Dict } from "@/lib/dict/es"
+import { fmt } from "@/lib/i18n"
 import type { LeadErrors, LeadPayload } from "@/types"
 
 /** Validación compartida: el navegador muestra los mensajes por campo y el servidor vuelve a validar todo. */
@@ -21,7 +23,7 @@ const TYPOS: Record<string, string> = {
 export const clean = (v: unknown) => (typeof v === "string" ? v.replace(/\s+/g, " ").trim() : "")
 const digits = (v: string) => v.replace(/\D/g, "")
 
-export function validateLead(input: Partial<LeadPayload>): LeadErrors {
+export function validateLead(input: Partial<LeadPayload>, m: Dict["form"]["errors"]): LeadErrors {
   const e: LeadErrors = {}
   const name = clean(input.name)
   const business = clean(input.business)
@@ -30,27 +32,27 @@ export function validateLead(input: Partial<LeadPayload>): LeadErrors {
   const message = clean(input.message)
   const service = clean(input.service)
 
-  if (!name) e.name = "Ingresá tu nombre y apellido."
-  else if (name.length < LIMITS.nameMin || name.length > LIMITS.nameMax) e.name = `El nombre debe tener entre ${LIMITS.nameMin} y ${LIMITS.nameMax} caracteres.`
-  else if (!/\p{L}.*\p{L}/u.test(name) || /[<>{}@]|https?:|www\./i.test(name)) e.name = "Ingresá un nombre válido."
+  if (!name) e.name = m.nameRequired
+  else if (name.length < LIMITS.nameMin || name.length > LIMITS.nameMax) e.name = fmt(m.nameLength, { min: LIMITS.nameMin, max: LIMITS.nameMax })
+  else if (!/\p{L}.*\p{L}/u.test(name) || /[<>{}@]|https?:|www\./i.test(name)) e.name = m.nameInvalid
 
-  if (business && (business.length > LIMITS.businessMax || /[<>{}]|https?:|www\./i.test(business))) e.business = "Ingresá un nombre de negocio válido."
+  if (business && (business.length > LIMITS.businessMax || /[<>{}]|https?:|www\./i.test(business))) e.business = m.business
 
-  if (!email) e.email = "Ingresá tu email."
-  else if (email.length > LIMITS.emailMax || !EMAIL_RE.test(email) || email.includes("..")) e.email = "Revisá el email: debería ser del estilo nombre@dominio.com."
+  if (!email) e.email = m.emailRequired
+  else if (email.length > LIMITS.emailMax || !EMAIL_RE.test(email) || email.includes("..")) e.email = m.emailInvalid
   else {
     const [user, domain] = email.split("@")
-    if (TYPOS[domain]) e.email = `¿Quisiste decir ${user}@${TYPOS[domain]}?`
+    if (TYPOS[domain]) e.email = fmt(m.emailTypo, { suggestion: `${user}@${TYPOS[domain]}` })
   }
 
-  if (!whatsapp) e.whatsapp = "Ingresá tu número de WhatsApp."
-  else if (/[^\d\s()+\-.]/.test(whatsapp)) e.whatsapp = "Usá solo números (podés incluir +, espacios o guiones)."
-  else if (digits(whatsapp).length < LIMITS.phoneMin || digits(whatsapp).length > LIMITS.phoneMax) e.whatsapp = "Revisá el número: incluí el código de área (ej. 11 2345 6789)."
+  if (!whatsapp) e.whatsapp = m.whatsappRequired
+  else if (/[^\d\s()+\-.]/.test(whatsapp)) e.whatsapp = m.whatsappChars
+  else if (digits(whatsapp).length < LIMITS.phoneMin || digits(whatsapp).length > LIMITS.phoneMax) e.whatsapp = m.whatsappLength
 
-  if (!serviceOptions.some((o) => o.value === service)) e.service = "Elegí qué estás buscando."
+  if (!(serviceValues as readonly string[]).includes(service)) e.service = m.service
 
-  if (message.length > LIMITS.messageMax) e.message = `El mensaje es demasiado largo (máximo ${LIMITS.messageMax} caracteres).`
-  else if ((message.match(URL_RE) ?? []).length > 2) e.message = "El mensaje tiene demasiados enlaces."
+  if (message.length > LIMITS.messageMax) e.message = fmt(m.messageLong, { max: LIMITS.messageMax })
+  else if ((message.match(URL_RE) ?? []).length > 2) e.message = m.messageLinks
 
   return e
 }

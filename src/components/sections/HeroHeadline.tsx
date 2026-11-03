@@ -3,17 +3,15 @@
 import { motion } from "framer-motion"
 import { useSafeReducedMotion } from "@/components/ui/useMotionOk"
 
-const words = [
-  { t: "Tu" }, { t: "negocio," }, { t: "conectado" }, { t: "para" }, { t: "crecer.", accent: true },
-]
 
 /** Titular del hero: cada palabra sube desde una máscara, y "crecer." se subraya con un trazo que se dibuja. */
-export function HeroHeadline() {
+export function HeroHeadline({ words: list, label }: { words: string[]; label: string }) {
+  const words = list.map((t, i) => ({ t, accent: i === list.length - 1 }))
   const reduce = useSafeReducedMotion()
   return (
-    <h1 className="t-display" aria-label="Tu negocio, conectado para crecer.">
+    <h1 className="t-display" aria-label={label}>
       {words.map((w, i) => (
-        <span key={w.t} aria-hidden className="relative mr-[0.22em] inline-block overflow-hidden pb-[0.14em] align-top" style={{ marginBottom: "-0.14em" }}>
+        <span key={w.t} aria-hidden className="relative inline-block overflow-hidden pb-[0.14em] align-top" style={{ marginBottom: "-0.14em" }}>
           <motion.span
             className={w.accent ? "relative inline-block text-brand" : "inline-block"}
             initial={reduce ? false : { y: "110%", rotate: 3 }}
@@ -31,7 +29,7 @@ export function HeroHeadline() {
             </svg>
           )}
         </span>
-      ))}
+      )).flatMap((el, i, arr) => (i < arr.length - 1 ? [el, " "] : [el]))}
     </h1>
   )
 }

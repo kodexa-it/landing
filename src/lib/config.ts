@@ -10,10 +10,6 @@ export const site = {
   url: clean(process.env.NEXT_PUBLIC_SITE_URL, "https://kodexa.ar"),
   /** URL pública del sitio institucional original (kodexa-landing). */
   institutionalUrl: clean(process.env.NEXT_PUBLIC_INSTITUTIONAL_URL, "https://kodexa.ar"),
-  locale: "es_AR",
-  tagline: "Tu negocio, conectado para crecer.",
-  description:
-    "Kodexa es un estudio tecnológico argentino: diseñamos webs, conectamos tus canales con Nexo (asistente con IA por WhatsApp) y organizás oportunidades con Nodo (CRM). También desarrollamos software a medida.",
   email: "contacto@kodexa.ar",
   whatsappNumber: "5491178148150",
   whatsappDisplay: "+54 9 11 7814-8150",
@@ -37,24 +33,7 @@ export const analyticsIds = {
   clarity: process.env.NEXT_PUBLIC_CLARITY_ID?.trim() || "",
 }
 
-export const navItems = [
-  { label: "Ecosistema", href: "#ecosistema" },
-  { label: "Nodo CRM", href: "#nodo" },
-  { label: "Soluciones web", href: "#soluciones-web" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Desarrollo a medida", href: "#desarrollo-a-medida" },
-  { label: "Contacto", href: "#contacto" },
-] as const
+/** Valores estables del selector "¿Qué estás buscando?". Las etiquetas viven en los diccionarios (lib/dict). */
+export const serviceValues = ["landing", "institucional", "institucional-pro", "nexo", "nodo", "a-medida", "asesoramiento"] as const
 
-/** Opciones del selector "¿Qué estás buscando?". El `value` es estable; el label es lo que ve la persona. */
-export const serviceOptions = [
-  { value: "landing", label: "Landing Page" },
-  { value: "institucional", label: "Sitio Institucional" },
-  { value: "institucional-pro", label: "Institucional Pro" },
-  { value: "nexo", label: "Nexo" },
-  { value: "nodo", label: "Nodo" },
-  { value: "a-medida", label: "Desarrollo a medida" },
-  { value: "asesoramiento", label: "No estoy seguro, necesito asesoramiento" },
-] as const
-
-export type ServiceValue = (typeof serviceOptions)[number]["value"]
+export type ServiceValue = (typeof serviceValues)[number]

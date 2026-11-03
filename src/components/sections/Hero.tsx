@@ -1,9 +1,11 @@
+import type { Dict } from "@/lib/dict/es"
 import { HeroHeadline } from "@/components/sections/HeroHeadline"
 import { HeroVisual } from "@/components/sections/HeroVisual"
 import { Cta } from "@/components/ui/Cta"
 import { Reveal } from "@/components/ui/Reveal"
 
-export function Hero() {
+export function Hero({ d }: { d: Dict }) {
+  const h = d.hero
   return (
     <section id="inicio" className="relative overflow-hidden">
       <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden />
@@ -11,27 +13,27 @@ export function Hero() {
         <div>
           <Reveal>
             <p className="t-label mb-6 flex items-center gap-3 text-muted">
-              <span className="h-px w-8 bg-brand" /> Estudio tecnológico
+              <span className="h-px w-8 bg-brand" /> {h.eyebrow}
             </p>
           </Reveal>
-          <HeroHeadline />
+          <HeroHeadline words={h.headline} label={h.headlineLabel} />
           <Reveal delay={0.12}>
             <p className="t-lead mt-7 max-w-xl">
-              Diseñamos experiencias web, conectamos tus canales comerciales y desarrollamos tecnología para que tu negocio pueda crecer con una estructura digital preparada para el futuro.
+              {h.lead}
             </p>
           </Reveal>
           <Reveal delay={0.18}>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Cta ctx={{ section: "hero", type: "primary" }} whatsapp="hero">Hablemos de tu proyecto</Cta>
-              <Cta ctx={{ section: "hero", type: "secondary" }} href="#ecosistema" variant="secondary" event="ecosystem_view" arrow={false}>Explorá el ecosistema</Cta>
+              <Cta ctx={{ section: "hero", type: "primary" }} whatsapp="hero">{h.primary}</Cta>
+              <Cta ctx={{ section: "hero", type: "secondary" }} href="#ecosistema" variant="secondary" event="ecosystem_view" arrow={false}>{h.secondary}</Cta>
             </div>
           </Reveal>
           <Reveal delay={0.24}>
             <ul className="t-label mt-12 flex flex-wrap gap-x-6 gap-y-2 text-muted">
-              <li><span className="text-ink">Web</span> atrae</li>
-              <li><span className="text-ink">Nexo</span> conecta</li>
-              <li><a href="#nodo" className="inline-flex items-center gap-1.5 hover:text-ink"><span className="size-1.5 rounded-full bg-brand" aria-hidden /><span className="text-ink">Nodo</span> organiza</a></li>
-              <li><span className="text-brand-ink">Kodexa</span> integra</li>
+              <li><span className="text-ink">Web</span> {h.pills.web}</li>
+              <li><span className="text-ink">Nexo</span> {h.pills.nexo}</li>
+              <li><a href="#nodo" className="inline-flex items-center gap-1.5 hover:text-ink"><span className="size-1.5 rounded-full bg-brand" aria-hidden /><span className="text-ink">Nodo</span> {h.pills.nodo}</a></li>
+              <li><span className="text-brand-ink">Kodexa</span> {h.pills.kodexa}</li>
             </ul>
           </Reveal>
         </div>

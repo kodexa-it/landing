@@ -3,11 +3,13 @@
 import clsx from "clsx"
 import { MessageCircle } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useI18n } from "@/components/i18n/I18nProvider"
 import { trackEvent } from "@/lib/analytics"
 import { whatsappHref } from "@/lib/whatsapp"
 
 /** Botón flotante de WhatsApp: aparece al empezar a bajar y se corre del camino en pantallas con muescas (safe-area). */
 export function WhatsappFloat() {
+  const { locale, d } = useI18n()
   const [visible, setVisible] = useState(false)
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 420)
@@ -18,10 +20,10 @@ export function WhatsappFloat() {
 
   return (
     <a
-      href={whatsappHref("general")}
+      href={whatsappHref(locale, "general")}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escribinos por WhatsApp"
+      aria-label={d.a11y.whatsappFloat}
       tabIndex={visible ? 0 : -1}
       onClick={() => trackEvent("click_whatsapp", { section: "flotante", cta_type: "float" })}
       className={clsx(
@@ -30,7 +32,7 @@ export function WhatsappFloat() {
       )}
     >
       <MessageCircle className="size-6" aria-hidden />
-      <span className="hidden text-[0.95rem] font-medium sm:inline">Escribinos</span>
+      <span className="hidden text-[0.95rem] font-medium sm:inline">{d.common.float}</span>
     </a>
   )
 }

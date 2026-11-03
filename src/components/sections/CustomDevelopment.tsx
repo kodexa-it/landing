@@ -1,15 +1,9 @@
 import { Boxes, Cable, Cog, Database, LayoutPanelTop, Workflow } from "lucide-react"
 import { Cta } from "@/components/ui/Cta"
 import { Reveal } from "@/components/ui/Reveal"
+import type { Dict } from "@/lib/dict/es"
 
-const caps = [
-  { icon: LayoutPanelTop, t: "Desarrollo de plataformas web" },
-  { icon: Database, t: "Sistemas de gestión" },
-  { icon: Workflow, t: "Automatización de procesos" },
-  { icon: Cable, t: "Integraciones entre sistemas" },
-  { icon: Boxes, t: "Aplicaciones personalizadas" },
-  { icon: Cog, t: "Soluciones para operaciones comerciales" },
-]
+const capIcons = [LayoutPanelTop, Database, Workflow, Cable, Boxes, Cog]
 
 /** Diagrama abstracto de sistema: nodos y conexiones (decorativo). */
 function SystemArt() {
@@ -29,33 +23,37 @@ function SystemArt() {
   )
 }
 
-export function CustomDevelopment() {
+export function CustomDevelopment({ d }: { d: Dict }) {
+  const c = d.custom
   return (
     <section id="desarrollo-a-medida" className="on-dark relative overflow-hidden bg-[#0b0b0b] py-24 text-white lg:py-32">
       <div className="bg-dots-dark pointer-events-none absolute inset-0" aria-hidden />
       <div className="relative mx-auto grid grid-cols-1 max-w-[1240px] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <Reveal>
-            <p className="t-label mb-5 flex items-center gap-3 text-white/50"><span className="h-px w-8 bg-brand" /> Desarrollo a medida</p>
-            <h2 className="t-h2">¿Tu negocio necesita algo que todavía no existe?</h2>
+            <p className="t-label mb-5 flex items-center gap-3 text-white/50"><span className="h-px w-8 bg-brand" /> {c.eyebrow}</p>
+            <h2 className="t-h2">{c.title}</h2>
             <p className="mt-6 max-w-xl text-lg text-white/65">
-              Desarrollamos tecnología a medida para resolver problemas reales, optimizar procesos y conectar herramientas que hacen funcionar tu negocio.
+              {c.text}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-              {caps.map(({ icon: Icon, t }) => (
+              {c.caps.map((t, i) => {
+                const Icon = capIcons[i]
+                return (
                 <li key={t} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[0.93rem] text-white/85">
                   <Icon className="size-[18px] shrink-0 text-brand" aria-hidden /> {t}
                 </li>
-              ))}
+                )
+              })}
             </ul>
             <div className="mt-10">
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <Cta ctx={{ section: "desarrollo-a-medida", service: "a-medida", type: "primary" }} href="#contacto" variant="light">Contanos qué necesitás</Cta>
-                <Cta ctx={{ section: "desarrollo-a-medida", service: "a-medida", type: "link" }} whatsapp="a-medida" variant="ghost-light">Escribinos por WhatsApp</Cta>
+                <Cta ctx={{ section: "desarrollo-a-medida", service: "a-medida", type: "primary" }} href="#contacto" variant="light">{c.cta}</Cta>
+                <Cta ctx={{ section: "desarrollo-a-medida", service: "a-medida", type: "link" }} whatsapp="a-medida" variant="ghost-light">{c.cta2}</Cta>
               </div>
-              <p className="mt-4 max-w-md text-sm text-white/45">No hace falta que sepas qué tecnología necesitás: contanos el problema y lo pensamos juntos.</p>
+              <p className="mt-4 max-w-md text-sm text-white/45">{c.note}</p>
             </div>
           </Reveal>
         </div>

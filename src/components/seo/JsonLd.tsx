@@ -1,7 +1,10 @@
 import { site } from "@/lib/config"
+import type { Dict } from "@/lib/dict/es"
+import type { Locale } from "@/lib/i18n"
 
 /** Schema.org: Organization + ProfessionalService de Kodexa. Solo datos reales (sin ratings ni reseñas). */
-export function JsonLd() {
+export function JsonLd({ d, locale }: { d: Dict; locale: Locale }) {
+  const url = locale === "en" ? `${site.url}/en` : site.url
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -16,21 +19,17 @@ export function JsonLd() {
       },
       {
         "@type": "ProfessionalService",
-        "@id": `${site.url}/#service`,
+        "@id": `${url}/#service`,
         name: "Kodexa",
-        url: site.url,
-        description: site.description,
+        url,
+        inLanguage: locale,
+        description: d.meta.description,
         email: site.email,
         telephone: `+${site.whatsappNumber}`,
-        areaServed: { "@type": "Country", name: "Argentina" },
+        areaServed: { "@type": "Country", name: d.meta.schemaCountry },
         parentOrganization: { "@id": `${site.url}/#organization` },
-        knowsAbout: ["Desarrollo web", "Diseño de páginas web", "Landing pages", "Sitios institucionales", "Software a medida", "Automatización de procesos", "CRM", "Inteligencia artificial para empresas"],
-        makesOffer: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Institucional" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Institucional Pro" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Desarrollo de software a medida" } },
-        ],
+        knowsAbout: d.meta.schemaKnows,
+        makesOffer: d.meta.schemaOffers.map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
       },
     ],
   }

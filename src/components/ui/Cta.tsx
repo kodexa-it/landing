@@ -4,6 +4,7 @@ import clsx from "clsx"
 import { ArrowUpRight, ArrowRight } from "lucide-react"
 import type { MouseEvent, ReactNode } from "react"
 import { trackEvent, type AnalyticsEvent } from "@/lib/analytics"
+import { useI18n } from "@/components/i18n/I18nProvider"
 import { whatsappHref, type WhatsappKey } from "@/lib/whatsapp"
 import type { CtaContext } from "@/types"
 
@@ -36,8 +37,9 @@ type Props = {
  */
 export function Cta(props: Props) {
   const { ctx, variant = "primary", className, children, arrow } = props
+  const { locale } = useI18n()
   const isWa = "whatsapp" in props
-  const href = isWa ? whatsappHref(props.whatsapp) : props.href
+  const href = isWa ? whatsappHref(locale, props.whatsapp) : props.href
   const external = isWa || (!isWa && (props.external ?? /^https?:/.test(props.href)))
   const base = variant === "ghost" || variant === "ghost-light" ? "inline-flex items-center gap-1.5 font-medium underline-offset-4 hover:underline" : "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-[0.95rem] font-medium leading-tight"
   const icon = arrow ?? (external ? "up-right" : "right")

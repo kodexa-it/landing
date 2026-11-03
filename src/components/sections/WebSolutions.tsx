@@ -2,12 +2,13 @@ import { ArrowDownRight, Check } from "lucide-react"
 import type { ReactNode } from "react"
 import { Cta } from "@/components/ui/Cta"
 import { Reveal } from "@/components/ui/Reveal"
+import type { Dict } from "@/lib/dict/es"
 import type { CtaContext } from "@/types"
 
-function Ideal({ items, dark }: { items: readonly string[]; dark?: boolean }) {
+function Ideal({ label, items, dark }: { label: string; items: readonly string[]; dark?: boolean }) {
   return (
     <div className="mt-6">
-      <p className={`t-label mb-3 ${dark ? "text-white/50" : "text-muted"}`}>Ideal para</p>
+      <p className={`t-label mb-3 ${dark ? "text-white/50" : "text-muted"}`}>{label}</p>
       <ul className="space-y-2">
         {items.map((i) => (
           <li key={i} className={`flex items-start gap-2.5 text-[0.93rem] ${dark ? "text-white/80" : "text-ink/80"}`}>
@@ -52,8 +53,8 @@ function Wire({ kind }: { kind: "landing" | "institucional" | "pro" | "medida" }
   )
 }
 
-function Card({ n, title, tag, text, ideal, ctx, wa, cta, children, dark, className }: {
-  n: string; title: string; tag: string; text: string; ideal: readonly string[]; ctx: CtaContext; wa: "landing" | "institucional" | "institucional-pro" | "a-medida"; cta: string; children: ReactNode; dark?: boolean; className?: string
+function Card({ n, title, tag, text, ideal, idealLabel, ctx, wa, cta, children, dark, className }: {
+  idealLabel: string; n: string; title: string; tag: string; text: string; ideal: readonly string[]; ctx: CtaContext; wa: "landing" | "institucional" | "institucional-pro" | "a-medida"; cta: string; children: ReactNode; dark?: boolean; className?: string
 }) {
   return (
     <article className={`flex h-full flex-col rounded-[1.5rem] p-7 sm:p-9 ${dark ? "on-dark bg-ink text-white" : "border border-line bg-white shadow-soft"} ${className ?? ""}`}>
@@ -61,7 +62,7 @@ function Card({ n, title, tag, text, ideal, ctx, wa, cta, children, dark, classN
       <h3 className="t-h3 mt-4">{tag}</h3>
       <p className={`mt-3 ${dark ? "text-white/65" : "text-muted"}`}>{text}</p>
       <div className="mt-6">{children}</div>
-      <Ideal items={ideal} dark={dark} />
+      <Ideal label={idealLabel} items={ideal} dark={dark} />
       <div className="mt-auto pt-8">
         <Cta ctx={ctx} whatsapp={wa} variant={dark ? "light" : "primary"}>{cta}</Cta>
       </div>
@@ -69,32 +70,33 @@ function Card({ n, title, tag, text, ideal, ctx, wa, cta, children, dark, classN
   )
 }
 
-export function WebSolutions() {
+export function WebSolutions({ d }: { d: Dict }) {
+  const w = d.web
   return (
     <section id="soluciones-web" className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal>
-          <p className="t-label mb-5 text-muted">Soluciones web</p>
-          <h2 className="t-h2 max-w-3xl">Una web pensada para lo que tu negocio necesita.</h2>
+          <p className="t-label mb-5 text-muted">{w.eyebrow}</p>
+          <h2 className="t-h2 max-w-3xl">{w.title}</h2>
           <p className="t-lead mt-5 max-w-2xl">
-            No todos los negocios necesitan lo mismo. Diseñamos experiencias digitales adaptadas a tus objetivos, tu identidad y la etapa en la que se encuentra tu empresa.
+            {w.lead}
           </p>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
-            <Card n="01" title="Landing Page" tag="Una página. Un objetivo. Más oportunidades." wa="landing" cta="Consultar por una landing"
+            <Card idealLabel={w.ideal} n="01" title={w.landing.title} tag={w.landing.tag} wa="landing" cta={w.landing.cta}
               ctx={{ section: "soluciones-landing", service: "landing", product: "web" }}
-              text="Diseñada para presentar una oferta, promocionar un producto o servicio y convertir visitantes en consultas."
-              ideal={["Campañas publicitarias.", "Lanzamientos.", "Captación de leads.", "Servicios específicos."]}>
+              text={w.landing.text}
+              ideal={w.landing.ideal}>
               <Wire kind="landing" />
             </Card>
           </Reveal>
           <Reveal delay={0.06} className="lg:col-span-7">
-            <Card n="02" title="Sitio Institucional" tag="Tu negocio, presentado de manera profesional." wa="institucional" cta="Consultar por un sitio"
+            <Card idealLabel={w.ideal} n="02" title={w.institucional.title} tag={w.institucional.tag} wa="institucional" cta={w.institucional.cta}
               ctx={{ section: "soluciones-institucional", service: "institucional", product: "web" }}
-              text="Una web que comunica quién sos, qué hacés y cómo podés ayudar a tus clientes."
-              ideal={["Empresas.", "Profesionales.", "Negocios de servicios.", "Marcas que necesitan fortalecer su presencia digital."]}>
+              text={w.institucional.text}
+              ideal={w.institucional.ideal}>
               <Wire kind="institucional" />
             </Card>
           </Reveal>
@@ -102,16 +104,16 @@ export function WebSolutions() {
           {/* Institucional Pro: tratamiento destacado */}
           <Reveal delay={0.08} className="lg:col-span-12">
             <article className="relative overflow-hidden rounded-[1.75rem] border-2 border-ink bg-white p-7 sm:p-10">
-              <span className="t-label absolute right-6 top-6 rounded-full bg-brand px-3 py-1 text-ink">Más completa</span>
+              <span className="t-label absolute right-6 top-6 rounded-full bg-brand px-3 py-1 text-ink">{w.pro.badge}</span>
               <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
                 <div>
-                  <p className="t-label flex items-center gap-2 text-muted"><span className="text-brand-ink">03</span> Institucional Pro</p>
-                  <h3 className="t-h2 mt-4">Una experiencia digital más completa.</h3>
+                  <p className="t-label flex items-center gap-2 text-muted"><span className="text-brand-ink">03</span> {w.pro.title}</p>
+                  <h3 className="t-h2 mt-4">{w.pro.tag}</h3>
                   <p className="mt-4 max-w-xl text-muted">
-                    Un sitio con mayor profundidad, funcionalidades avanzadas e integraciones para empresas que necesitan una plataforma más robusta.
+                    {w.pro.text}
                   </p>
-                  <Ideal items={["Empresas con múltiples servicios.", "Negocios con catálogos o contenidos dinámicos.", "Empresas que necesitan funcionalidades particulares.", "Proyectos que requieren integraciones."]} />
-                  <div className="mt-8"><Cta ctx={{ section: "soluciones-pro", service: "institucional-pro", product: "web" }} whatsapp="institucional-pro">Consultar por Institucional Pro</Cta></div>
+                  <Ideal label={w.ideal} items={w.pro.ideal} />
+                  <div className="mt-8"><Cta ctx={{ section: "soluciones-pro", service: "institucional-pro", product: "web" }} whatsapp="institucional-pro">{w.pro.cta}</Cta></div>
                 </div>
                 <div className="w-full max-w-lg lg:ml-auto"><Wire kind="pro" /></div>
               </div>
@@ -122,21 +124,21 @@ export function WebSolutions() {
           <Reveal delay={0.1} className="lg:col-span-12">
             <a href="#desarrollo-a-medida" className="group on-dark flex flex-col justify-between gap-6 rounded-[1.5rem] bg-ink p-7 text-white sm:flex-row sm:items-center sm:p-9">
               <div>
-                <p className="t-label text-white/50"><span className="text-brand">04</span> Desarrollo a medida</p>
-                <h3 className="t-h3 mt-3">Cuando tu negocio necesita algo diferente.</h3>
-                <p className="mt-2 max-w-xl text-white/65">Diseñamos y desarrollamos soluciones tecnológicas personalizadas para resolver necesidades específicas.</p>
+                <p className="t-label text-white/50"><span className="text-brand">04</span> {w.bridge.title}</p>
+                <h3 className="t-h3 mt-3">{w.bridge.tag}</h3>
+                <p className="mt-2 max-w-xl text-white/65">{w.bridge.text}</p>
               </div>
               <span className="inline-flex h-12 shrink-0 items-center gap-2 rounded-full bg-white px-6 font-medium text-ink transition-colors group-hover:bg-brand">
-                Hablemos de tu proyecto <ArrowDownRight className="size-4" aria-hidden />
+                {w.bridge.cta} <ArrowDownRight className="size-4" aria-hidden />
               </span>
             </a>
           </Reveal>
         </div>
         <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-mist p-6 sm:flex-row sm:items-center sm:justify-between sm:px-9">
-          <p className="max-w-xl text-[0.95rem] text-ink/80">¿No sabés cuál te conviene? Cada proyecto se evalúa de forma personalizada: contanos qué necesitás y te respondemos con una propuesta.</p>
+          <p className="max-w-xl text-[0.95rem] text-ink/80">{w.advice}</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Cta ctx={{ section: "soluciones-web", service: "asesoramiento", type: "secondary" }} href="#contacto" variant="secondary" arrow={false}>Necesito asesoramiento</Cta>
-            <Cta ctx={{ section: "soluciones-web", product: "web", type: "link" }} whatsapp="web" variant="ghost">Consultar por WhatsApp</Cta>
+            <Cta ctx={{ section: "soluciones-web", service: "asesoramiento", type: "secondary" }} href="#contacto" variant="secondary" arrow={false}>{w.adviceCta}</Cta>
+            <Cta ctx={{ section: "soluciones-web", product: "web", type: "link" }} whatsapp="web" variant="ghost">{w.adviceWa}</Cta>
           </div>
         </div>
       </div>

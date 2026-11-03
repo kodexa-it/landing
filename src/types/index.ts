@@ -23,6 +23,8 @@ export type LeadPayload = {
   website: string
   /** Marca de tiempo (ms) de cuando se abrió el formulario. */
   startedAt: number
+  /** Idioma de la página desde la que se envió (es | en). */
+  lang?: string
 }
 
 export type LeadErrors = Partial<Record<"name" | "business" | "email" | "whatsapp" | "service" | "message", string>>
