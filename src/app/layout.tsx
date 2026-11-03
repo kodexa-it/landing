@@ -3,7 +3,8 @@ import localFont from "next/font/local"
 import { Footer } from "@/components/layout/Footer"
 import { Header } from "@/components/layout/Header"
 import { JsonLd } from "@/components/seo/JsonLd"
-import { Tracking } from "@/components/seo/Tracking"
+import { Tracking, TrackingNoScript } from "@/components/seo/Tracking"
+import { ScrollProgress } from "@/components/ui/ScrollProgress"
 import { WhatsappFloat } from "@/components/ui/WhatsappFloat"
 import { isPreview, site } from "@/lib/config"
 import "./globals.css"
@@ -66,6 +67,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR" className={`${plexSans.variable} ${plexMono.variable}`}>
       <body>
+        <TrackingNoScript />
+        <ScrollProgress />
         <a href="#contenido" className="sr-only z-[60] rounded-full bg-ink px-5 py-3 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
           Saltar al contenido
         </a>

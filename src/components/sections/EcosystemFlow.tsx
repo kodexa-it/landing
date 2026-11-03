@@ -21,12 +21,18 @@ const steps = [
 function Connector() {
   return (
     <>
-      <svg className="hidden h-3 w-full min-w-8 flex-[0_0_44px] self-center lg:block" aria-hidden>
-        <line x1="0" y1="6" x2="100%" y2="6" className="flow-line" stroke="var(--color-brand)" strokeWidth="1.5" />
-      </svg>
-      <svg className="mx-auto block h-10 w-3 lg:hidden" aria-hidden>
-        <line x1="6" y1="0" x2="6" y2="100%" className="flow-line" stroke="var(--color-brand)" strokeWidth="1.5" />
-      </svg>
+      <div className="relative hidden h-3 w-full min-w-8 flex-[0_0_44px] self-center lg:block">
+        <svg className="absolute inset-0 size-full" aria-hidden>
+          <line x1="0" y1="6" x2="100%" y2="6" className="flow-line" stroke="var(--color-brand)" strokeWidth="1.5" />
+        </svg>
+        <span className="travel-dot travel-x" aria-hidden />
+      </div>
+      <div className="relative mx-auto block h-10 w-3 lg:hidden">
+        <svg className="absolute inset-0 size-full" aria-hidden>
+          <line x1="6" y1="0" x2="6" y2="100%" className="flow-line" stroke="var(--color-brand)" strokeWidth="1.5" />
+        </svg>
+        <span className="travel-dot travel-y" aria-hidden />
+      </div>
     </>
   )
 }

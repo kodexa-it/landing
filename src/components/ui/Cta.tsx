@@ -62,10 +62,10 @@ export function Cta(props: Props) {
       href={href}
       onClick={onClick}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={clsx(base, "transition-colors duration-200", styles[variant], className)}
+      className={clsx(base, "group/cta transition-colors duration-200", styles[variant], className)}
     >
       {children}
-      {icon === "up-right" ? <ArrowUpRight className="size-4" aria-hidden /> : icon === "right" ? <ArrowRight className="size-4" aria-hidden /> : null}
+      {icon === "up-right" ? <ArrowUpRight className="size-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" aria-hidden /> : icon === "right" ? <ArrowRight className="size-4 transition-transform duration-200 group-hover/cta:translate-x-1" aria-hidden /> : null}
     </a>
   )
 }

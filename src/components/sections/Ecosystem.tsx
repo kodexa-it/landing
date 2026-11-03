@@ -4,6 +4,13 @@ import { FeatureList } from "@/components/ui/Check"
 import { Cta } from "@/components/ui/Cta"
 import { Reveal } from "@/components/ui/Reveal"
 import { site } from "@/lib/config"
+import { ChatDemo, type ChatMsg } from "@/components/ui/ChatDemo"
+
+const nexoChat: ChatMsg[] = [
+  { from: "user", text: "Hola, quiero cotizar el producto que vi en su web. ¿Hacen envíos al interior?" },
+  { from: "bot", text: "¡Hola! Sí, enviamos al interior. ¿Qué producto te interesa y qué cantidad necesitás?" },
+  { from: "user", text: "El modelo grande, unas 20 unidades." },
+]
 import { NodoSpotlight } from "@/components/sections/NodoSpotlight"
 
 const web = ["Presencia digital profesional.", "Posicionamiento orgánico y SEO.", "Captación de oportunidades.", "Experiencias adaptadas a cada negocio.", "Integración con herramientas comerciales."]
@@ -70,14 +77,9 @@ export function Ecosystem() {
                   Nexo es el asistente digital de tu negocio. Atiende consultas, conversa con potenciales clientes, responde preguntas y ayuda a calificarlos mediante inteligencia artificial.
                 </p>
                 <div className="mt-6"><FeatureList items={nexo} dark /></div>
-                <div className="mt-8 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10" aria-label="Ejemplo ilustrativo de una conversación con Nexo" role="img">
+                <div className="mt-8 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
                   <p className="t-label mb-3 text-[0.6rem] text-white/40">Ejemplo ilustrativo: consulta comercial</p>
-                  <div className="space-y-2 text-[0.82rem] leading-snug">
-                    <p className="w-fit max-w-[88%] rounded-2xl rounded-bl-sm bg-white/10 px-3.5 py-2.5">Hola, quiero cotizar el producto que vi en su web. ¿Hacen envíos al interior?</p>
-                    <p className="ml-auto w-fit max-w-[88%] rounded-2xl rounded-br-sm bg-brand px-3.5 py-2.5 text-ink">¡Hola! Sí, enviamos al interior. ¿Qué producto te interesa y qué cantidad necesitás?</p>
-                    <p className="w-fit max-w-[88%] rounded-2xl rounded-bl-sm bg-white/10 px-3.5 py-2.5">El modelo grande, unas 20 unidades.</p>
-                    <p className="mx-auto w-fit rounded-full border border-white/15 px-3 py-1 text-[0.7rem] text-white/60">Consulta lista para derivar al equipo comercial</p>
-                  </div>
+                  <ChatDemo variant="dark" messages={nexoChat} footer="Consulta lista para derivar al equipo comercial" />
                 </div>
                 <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
                   <Cta ctx={{ section: "ecosistema-nexo", product: "nexo", type: "card" }} whatsapp="nexo" variant="light">Conocé Nexo</Cta>

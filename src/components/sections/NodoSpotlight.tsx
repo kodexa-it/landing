@@ -1,6 +1,7 @@
 import { BellRing, Contact, KanbanSquare, ListChecks, Workflow, Building2 } from "lucide-react"
 import { Browser } from "@/components/ui/Browser"
 import { Cta } from "@/components/ui/Cta"
+import { Parallax } from "@/components/ui/Parallax"
 import { Reveal } from "@/components/ui/Reveal"
 
 const pillars = [
@@ -51,10 +52,12 @@ export function NodoSpotlight() {
 
           {/* Capturas reales superpuestas */}
           <div className="relative pb-14 lg:self-center lg:pb-20">
+            <Parallax from={-10} to={10}>
             <Browser
               src="/images/nodo-pipeline.webp" alt="Tablero Kanban de oportunidades en Nodo, con etapas de Lead a Ganado" width={1800} height={1012}
               caption="Nodo · pipeline · datos de demostración" sizes="(min-width:1024px) 640px, 92vw" className="border-white/10 shadow-lift"
             />
+            </Parallax>
             <Browser
               src="/images/nodo-dashboard.webp" alt="Inicio de Nodo con indicadores, pipeline abierto y actividad reciente" width={1600} height={900}
               caption="Nodo · inicio · datos de demostración" sizes="(min-width:1024px) 420px, 70vw"

@@ -24,7 +24,7 @@ function SystemArt() {
       ))}
       <circle cx="210" cy="210" r="46" fill="var(--color-brand)" opacity="0.12" />
       <circle cx="210" cy="210" r="30" fill="#111" stroke="var(--color-brand)" strokeWidth="1.5" />
-      <circle cx="210" cy="210" r="9" fill="var(--color-brand)" />
+      <circle cx="210" cy="210" r="9" fill="var(--color-brand)" className="node-pulse" />
     </svg>
   )
 }

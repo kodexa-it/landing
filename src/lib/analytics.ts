@@ -30,7 +30,8 @@ export function trackEvent(name: AnalyticsEvent, params: EventParams = {}) {
   if (typeof window === "undefined") return
   try {
     const clean = Object.fromEntries(Object.entries(params).filter(([, v]) => v !== undefined))
-    window.dataLayer?.push({ event: name, ...clean })
+    // Si GTM todavía no cargó, los eventos quedan en la cola y se procesan cuando carga.
+    ;(window.dataLayer = window.dataLayer || []).push({ event: name, ...clean })
   } catch {
     /* la medición nunca debe romper la navegación */
   }

@@ -1,11 +1,12 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
+import { useSafeReducedMotion } from "@/components/ui/useMotionOk"
 import type { ReactNode } from "react"
 
 /** Entrada discreta al hacer scroll. Respeta prefers-reduced-motion (sin animación, contenido visible de inmediato). */
 export function Reveal({ children, delay = 0, y = 18, className }: { children: ReactNode; delay?: number; y?: number; className?: string }) {
-  const reduce = useReducedMotion()
+  const reduce = useSafeReducedMotion()
   if (reduce) return <div className={className}>{children}</div>
   return (
     <motion.div
