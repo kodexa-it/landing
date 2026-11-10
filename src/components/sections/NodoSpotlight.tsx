@@ -2,6 +2,7 @@ import { BellRing, Contact, KanbanSquare, ListChecks, Workflow, Building2 } from
 import { Browser } from "@/components/ui/Browser"
 import { Cta } from "@/components/ui/Cta"
 import { Parallax } from "@/components/ui/Parallax"
+import { BetaBadge, BetaNote } from "@/components/ui/BetaNote"
 import { Reveal } from "@/components/ui/Reveal"
 import type { Dict } from "@/lib/dict/es"
 
@@ -21,6 +22,7 @@ export function NodoSpotlight({ d }: { d: Dict }) {
             <div className="flex flex-wrap items-center gap-3">
               <p className="t-label text-white/50"><span className="text-brand">03</span> {n.name}</p>
               <span className="t-label rounded-full bg-brand px-3 py-1 text-ink">{n.badge}</span>
+              <BetaBadge d={d} />
             </div>
             <h3 className="t-h2 mt-6">{n.title}</h3>
             <p className="mt-5 max-w-lg text-lg text-white/70">
@@ -42,7 +44,9 @@ export function NodoSpotlight({ d }: { d: Dict }) {
               })}
             </ul>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <BetaNote d={d} className="mt-8 max-w-lg" />
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Cta ctx={{ section: "ecosistema-nodo", product: "nodo", type: "primary" }} whatsapp="nodo" variant="light">{n.cta}</Cta>
               <Cta ctx={{ section: "ecosistema-nodo", product: "nodo", service: "nodo", type: "link" }} href="#contacto" variant="ghost-light">{n.cta2}</Cta>
             </div>

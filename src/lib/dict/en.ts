@@ -6,6 +6,7 @@ export const en: Dict = {
     title: "Kodexa | Web development, custom software and a digital ecosystem for businesses",
     description:
       "We design websites, landing pages and corporate sites; connect your channels with Nexo (an AI assistant on WhatsApp) and organize opportunities with Nodo (CRM). Custom software and automation for businesses.",
+    ogDescription: "Web that attracts, Nexo that connects on WhatsApp with AI, and Nodo, the CRM that organizes your opportunities. Available in beta with priority support.",
     ogTitle: "Kodexa — Your business, connected to grow.",
     ogAlt: "Kodexa: Web, Nexo and Nodo, a digital ecosystem for your business",
     thanksTitle: "Thanks for your inquiry",
@@ -80,6 +81,11 @@ export const en: Dict = {
         { from: "bot", text: "Hi! Happy to help. What do you need, and for how many sites?" },
       ],
     },
+  },
+  beta: {
+    badge: "Beta",
+    title: "Available in beta",
+    text: "You can already get access and start using it. While it's in beta, you get priority help from our technical team: we're on top of it and ready to fix any issue that comes up.",
   },
   ecosystem: {
     title: "Everything your business needs to grow, connected.",

@@ -25,8 +25,8 @@ npm run start                  # producción → http://localhost:3200
 |---|---|---|
 | `FORMINIT_API_KEY` | **Sí, para que el formulario envíe** | API key de Forminit (la misma de `kodexa-landing/.env.local`). Sin ella `/api/contact` responde 503 y el formulario avisa que no está disponible: **nunca simula un envío**. |
 | `FORMINIT_FORM_ID` | No | Por defecto usa el formulario ya en producción (`920afmph8yf`), así las consultas llegan al mismo lugar que las de kodexa.ar. Se distinguen por el campo `source = landing-v2`. |
-| `NEXT_PUBLIC_SITE_URL` | Al publicar | URL pública de esta landing (canonical, sitemap, Open Graph). Por defecto `https://kodexa.ar`. |
-| `NEXT_PUBLIC_INSTITUTIONAL_URL` | No | Destino de "Conocé más sobre Kodexa". Por defecto `https://kodexa.ar`. |
+| `NEXT_PUBLIC_SITE_URL` | Al publicar | URL pública de esta landing (canonical, sitemap, Open Graph). Por defecto `https://ecosistema.kodexa.ar` (de ahí salen el canonical y la imagen de vista previa al compartir el link). |
+| `NEXT_PUBLIC_INSTITUTIONAL_URL` | No | Destino de "Conocé más sobre Kodexa". Por defecto `https://ecosistema.kodexa.ar` (de ahí salen el canonical y la imagen de vista previa al compartir el link). |
 | `NEXT_PUBLIC_SITE_PREVIEW` | Al publicar | `true` (por defecto) = `noindex` y `robots` bloqueado. Poner `false` cuando se publique la V2. |
 | `NEXT_PUBLIC_GTM_ID` | No | Contenedor de GTM. El sitio original usa `GTM-PX8R7ZH8` (incluye GA4 `G-BX1MFLCDJH`). Si no se define, no se carga nada. |
 | `NEXT_PUBLIC_CLARITY_ID` | No | Microsoft Clarity. El sitio original usa `yzr1ci43mv`. |

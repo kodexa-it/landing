@@ -7,7 +7,7 @@ const clean = (v: string | undefined, fallback: string) => (v && v.trim() ? v.tr
 export const site = {
   name: "Kodexa",
   /** URL pública de esta landing (canonical, sitemap, OG). */
-  url: clean(process.env.NEXT_PUBLIC_SITE_URL, "https://kodexa.ar"),
+  url: clean(process.env.NEXT_PUBLIC_SITE_URL, "https://ecosistema.kodexa.ar"),
   /** URL pública del sitio institucional original (kodexa-landing). */
   institutionalUrl: clean(process.env.NEXT_PUBLIC_INSTITUTIONAL_URL, "https://kodexa.ar"),
   email: "contacto@kodexa.ar",

@@ -4,6 +4,7 @@ export const es = {
     title: "Kodexa | Desarrollo web, software a medida y ecosistema digital para empresas",
     description:
       "Diseñamos páginas web, landing pages y sitios institucionales; conectamos tus canales con Nexo (asistente con IA por WhatsApp) y organizás oportunidades con Nodo (CRM). Software a medida y automatización para empresas.",
+    ogDescription: "Web que atrae, Nexo que conecta por WhatsApp con IA y Nodo, el CRM que organiza tus oportunidades. Disponibles en beta con ayuda prioritaria.",
     ogTitle: "Kodexa — Tu negocio, conectado para crecer.",
     ogAlt: "Kodexa: Web, Nexo y Nodo, un ecosistema digital para tu negocio",
     thanksTitle: "Gracias por tu consulta",
@@ -78,6 +79,11 @@ export const es = {
         { from: "bot", text: "¡Hola! Te ayudo. ¿Qué necesitás y para cuántas sedes?" },
       ],
     },
+  },
+  beta: {
+    badge: "Beta",
+    title: "Disponible en beta",
+    text: "Ya podés acceder y empezar a usarlo. Mientras esté en beta, tenés ayuda prioritaria de nuestro equipo técnico: estamos atentos para resolver cualquier inconveniente que surja.",
   },
   ecosystem: {
     title: "Todo lo que tu negocio necesita para crecer, conectado.",

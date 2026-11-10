@@ -5,6 +5,7 @@ import { Cta } from "@/components/ui/Cta"
 import { Reveal } from "@/components/ui/Reveal"
 import type { Dict } from "@/lib/dict/es"
 import { site } from "@/lib/config"
+import { BetaBadge, BetaNote } from "@/components/ui/BetaNote"
 import { ChatDemo, type ChatMsg } from "@/components/ui/ChatDemo"
 
 import { NodoSpotlight } from "@/components/sections/NodoSpotlight"
@@ -64,7 +65,7 @@ export function Ecosystem({ d }: { d: Dict }) {
               <div className="bg-dots-dark pointer-events-none absolute inset-0" aria-hidden />
               <div className="relative flex h-full flex-col">
                 <div className="flex items-center justify-between">
-                  <p className="t-label flex items-center gap-2 text-white/50"><span className="text-brand">02</span> {e.nexo.name}</p>
+                  <p className="t-label flex items-center gap-2 text-white/50"><span className="text-brand">02</span> {e.nexo.name} <BetaBadge d={d} /></p>
                   <Image src="/logos/nexo-mark.png" alt="" width={28} height={28} className="size-7 rounded-md" />
                 </div>
                 <h3 className="t-h3 mt-5">{e.nexo.title}</h3>
@@ -76,6 +77,7 @@ export function Ecosystem({ d }: { d: Dict }) {
                   <p className="t-label mb-3 text-[0.6rem] text-white/40">{e.nexo.example}</p>
                   <ChatDemo variant="dark" messages={e.nexo.chat as ChatMsg[]} footer={e.nexo.chatFooter} />
                 </div>
+                <BetaNote d={d} className="mt-6" />
                 <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
                   <Cta ctx={{ section: "ecosistema-nexo", product: "nexo", type: "card" }} whatsapp="nexo" variant="light">{e.nexo.cta}</Cta>
                   <Cta ctx={{ section: "ecosistema-nexo", product: "nexo", type: "link" }} href={site.nexoUrl} variant="ghost-light" event="click_contact">{e.nexo.cta2}</Cta>

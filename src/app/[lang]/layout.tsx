@@ -40,6 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLocale(lang)) return {}
   const d = getDict(lang)
   const url = `${site.url}${homePath(lang) === "/" ? "" : homePath(lang)}`
+  // URL absoluta y propia de esta landing: WhatsApp, LinkedIn y otras apps no resuelven rutas relativas ni imágenes de otro dominio.
+  const ogImage = `${site.url}/og-image${lang === "en" ? "-en" : ""}.png`
   return {
     metadataBase: new URL(site.url),
     title: { default: d.meta.title, template: "%s | Kodexa" },
@@ -57,10 +59,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url,
       siteName: "Kodexa",
       title: d.meta.ogTitle,
-      description: d.meta.description,
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: d.meta.ogAlt }],
+      description: d.meta.ogDescription,
+      images: [{ url: ogImage, secureUrl: ogImage, type: "image/png", width: 1200, height: 630, alt: d.meta.ogAlt }],
     },
-    twitter: { card: "summary_large_image", title: d.meta.ogTitle, description: d.meta.description, images: ["/og-image.png"] },
+    twitter: { card: "summary_large_image", title: d.meta.ogTitle, description: d.meta.ogDescription, images: [{ url: ogImage, alt: d.meta.ogAlt }] },
     icons: {
       icon: [{ url: "/favicon.ico", sizes: "48x48" }, { url: "/favicon.svg", type: "image/svg+xml" }],
       apple: "/apple-touch-icon.png",
