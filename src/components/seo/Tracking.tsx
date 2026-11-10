@@ -12,7 +12,7 @@ const safe = (v: string, re: RegExp) => v.replace(re, "")
 
 export function Tracking() {
   if (!trackingEnabled) return null
-  const gtm = safe(analyticsIds.gtm, /[^A-Za-z0-9-]/g)
+  const gtms = analyticsIds.gtmIds.map((g) => safe(g, /[^A-Za-z0-9-]/g)).filter(Boolean)
   const clarity = safe(analyticsIds.clarity, /[^A-Za-z0-9]/g)
   // Clarity no se carga hasta que haya consentimiento: el aviso llama a window.kxLoadClarity() al aceptar.
   const clarityLoader = clarity
@@ -22,9 +22,10 @@ export function Tracking() {
     <>
       {/* Va antes de GTM: define el consentimiento por defecto (denied) y restaura "granted" si ya había aceptado. */}
       <script id="consent-default" dangerouslySetInnerHTML={{ __html: consentBootScript + clarityLoader }} />
-      {gtm && (
-        <Script id="gtm" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`}</Script>
-      )}
+      {/* Cada contenedor comparte el mismo dataLayer y el mismo consentimiento. */}
+      {gtms.map((gtm, i) => (
+        <Script key={gtm} id={`gtm-${i}`} strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`}</Script>
+      ))}
     </>
   )
 }
@@ -32,11 +33,15 @@ export function Tracking() {
 /** Va justo después de abrir <body>: respaldo de GTM para navegadores sin JavaScript. */
 export function TrackingNoScript() {
   if (!trackingEnabled) return null
-  const gtm = safe(analyticsIds.gtm, /[^A-Za-z0-9-]/g)
-  if (!gtm) return null
+  const gtms = analyticsIds.gtmIds.map((g) => safe(g, /[^A-Za-z0-9-]/g)).filter(Boolean)
+  if (!gtms.length) return null
   return (
-    <noscript>
-      <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style={{ display: "none", visibility: "hidden" }} title="Google Tag Manager" />
-    </noscript>
+    <>
+      {gtms.map((gtm) => (
+        <noscript key={gtm}>
+          <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style={{ display: "none", visibility: "hidden" }} title="Google Tag Manager" />
+        </noscript>
+      ))}
+    </>
   )
 }

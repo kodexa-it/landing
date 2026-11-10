@@ -72,7 +72,7 @@ src/
 
 ## Google Tag Manager y animaciones
 
-- GTM: contenedor `GTM-KQFJZWBN` (variable `NEXT_PUBLIC_GTM_ID`). Se instala con el snippet estándar (head + noscript) y **solo carga en producción**; en desarrollo, `NEXT_PUBLIC_TRACKING_DEV=true`.
+- GTM: dos contenedores, `GTM-KQFJZWBN` y `GTM-W9J59DDB` (variable `NEXT_PUBLIC_GTM_IDS`, separados por coma; comparten dataLayer y consentimiento, así que un evento llega a ambos). Se instala con el snippet estándar (head + noscript) y **solo carga en producción**; en desarrollo, `NEXT_PUBLIC_TRACKING_DEV=true`.
 - Los eventos (`click_whatsapp`, `form_submit`, etc.) se envían a `window.dataLayer`; hay que crear triggers y tags en el contenedor.
 - Animaciones: titular con revelado por palabra, hero con parallax al puntero, chats de Nexo que se "escriben", partículas en el flujo, barra de progreso de scroll y listas escalonadas. Todo respeta `prefers-reduced-motion`.
 

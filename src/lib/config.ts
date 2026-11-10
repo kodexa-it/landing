@@ -28,8 +28,11 @@ export const forminitFormId = process.env.FORMINIT_FORM_ID?.trim() || "920afmph8
 export const isPreview = process.env.NEXT_PUBLIC_SITE_PREVIEW !== "false"
 
 export const analyticsIds = {
-  /** Contenedor de GTM de la landing V2 (configurable con NEXT_PUBLIC_GTM_ID). */
-  gtm: process.env.NEXT_PUBLIC_GTM_ID?.trim() || "GTM-KQFJZWBN",
+  /** Contenedores de GTM de la landing (pueden ser varios; se configuran con NEXT_PUBLIC_GTM_IDS, separados por coma). */
+  gtmIds: (process.env.NEXT_PUBLIC_GTM_IDS ?? process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-KQFJZWBN,GTM-W9J59DDB")
+    .split(",")
+    .map((v) => v.trim())
+    .filter(Boolean),
   clarity: process.env.NEXT_PUBLIC_CLARITY_ID?.trim() || "",
 }
 
