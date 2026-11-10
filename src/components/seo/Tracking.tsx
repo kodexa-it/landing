@@ -13,6 +13,8 @@ const safe = (v: string, re: RegExp) => v.replace(re, "")
 export function Tracking() {
   if (!trackingEnabled) return null
   const gtms = analyticsIds.gtmIds.map((g) => safe(g, /[^A-Za-z0-9-]/g)).filter(Boolean)
+  const ads = safe(analyticsIds.googleAdsId, /[^A-Za-z0-9-]/g)
+  const adsConv = safe(analyticsIds.googleAdsConversion, /[^A-Za-z0-9-_/]/g)
   const clarity = safe(analyticsIds.clarity, /[^A-Za-z0-9]/g)
   // Clarity no se carga hasta que haya consentimiento: el aviso llama a window.kxLoadClarity() al aceptar.
   const clarityLoader = clarity
@@ -22,6 +24,13 @@ export function Tracking() {
     <>
       {/* Va antes de GTM: define el consentimiento por defecto (denied) y restaura "granted" si ya había aceptado. */}
       <script id="consent-default" dangerouslySetInnerHTML={{ __html: consentBootScript + clarityLoader }} />
+      {/* Google Ads (gtag.js). Usa el mismo dataLayer y respeta el consentimiento por defecto (denied) definido arriba. */}
+      {ads && (
+        <>
+          <Script id="gads-lib" src={`https://www.googletagmanager.com/gtag/js?id=${ads}`} strategy="afterInteractive" />
+          <Script id="gads-init" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ads}');${adsConv ? `gtag('event','conversion',{'send_to':'${adsConv}','value':1.0,'currency':'ARS'});` : ""}`}</Script>
+        </>
+      )}
       {/* Cada contenedor comparte el mismo dataLayer y el mismo consentimiento. */}
       {gtms.map((gtm, i) => (
         <Script key={gtm} id={`gtm-${i}`} strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`}</Script>

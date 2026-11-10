@@ -28,6 +28,9 @@ export const forminitFormId = process.env.FORMINIT_FORM_ID?.trim() || "920afmph8
 export const isPreview = process.env.NEXT_PUBLIC_SITE_PREVIEW !== "false"
 
 export const analyticsIds = {
+  /** Google Ads (gtag.js): etiqueta global y conversión "Vista de página". Vacío = no se carga. */
+  googleAdsId: (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "AW-18538458634").trim(),
+  googleAdsConversion: (process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION ?? "AW-18538458634/RFQ9CNPq1bUdEIrc6YdF").trim(),
   /** Contenedores de GTM de la landing (pueden ser varios; se configuran con NEXT_PUBLIC_GTM_IDS, separados por coma). */
   gtmIds: (process.env.NEXT_PUBLIC_GTM_IDS ?? process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-KQFJZWBN,GTM-W9J59DDB")
     .split(",")
